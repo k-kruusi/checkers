@@ -1,3 +1,2 @@
-export * from './staticPiece';
-
-export * from './gameBoard';
+export * from './Tile';
+export * from './GameBoardController';

@@ -1,12 +1,15 @@
 import './App.css';
 import { CheckersProvider } from './providers';
-import { GameBoard } from './components/gameBoard';
+import { GameBoardController } from './components';
+import { NextMoveInspectorProvider } from './providers';
 
 function App() {
   return (
     <div className="App">
       <CheckersProvider>
-        <GameBoard />
+        <NextMoveInspectorProvider>
+          <GameBoardController />
+        </NextMoveInspectorProvider>
       </CheckersProvider>
     </div>
   );

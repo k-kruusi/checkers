@@ -1,0 +1,101 @@
+
+
+import React, { useCallback, useState } from 'react';
+import { useCheckers, useNextMove } from '../hooks';
+import { ActionType } from '../reducer';
+import { Coord, MoveResult, Piece } from '../schema';
+import { Tile } from './Tile';
+
+
+export const GameBoardController: React.FC = () => {
+  const { state, dispatch } = useCheckers();
+  const { board, currentPlayer } = state;
+  const { inspect, potentials, clear } = useNextMove();
+
+  const [dragStart, setDragStart] = useState<Coord | null>(null);
+  const [dragPieceColor, setDragPieceColor] = useState<Piece | null>(null);
+  const [dropZone, setDropZone] = useState<Coord | null>(null);
+
+  const handleCellClick = useCallback((piece: Piece, x: number, y: number) => {
+    if (piece === Piece.Empty) {
+      return;
+    }
+    setDragStart({ x, y });
+    inspect({ piece, coord: { x, y } });
+    setDragPieceColor(piece);
+  }, [inspect, setDragStart, setDragPieceColor]);
+
+  const handleCellDragEnd = useCallback((x: number, y: number) => {
+    if (dragStart && dropZone && dragPieceColor && potentials) {
+
+      const chosen = potentials.find((p) => p.coord.x === dropZone.x && p.coord.y === dropZone.y);
+
+      dispatch({
+        type: ActionType.MOVE_PIECE,
+        from: dragStart,
+        to: dropZone,
+        piece: dragPieceColor,
+        potentials: potentials,
+        result: chosen?.didJump ? MoveResult.Jump : MoveResult.Shift,
+      });
+    }
+
+    setDragStart(null);
+    setDragPieceColor(null);
+    setDropZone(null);
+    clear();
+  }, [dragStart,
+    dropZone,
+    dragPieceColor,
+    potentials,
+    dispatch,
+    setDragStart,
+    setDragPieceColor,
+    setDropZone,
+    clear]);
+
+  const handleHoverAndDrag = useCallback((piece: Piece, x: number, y: number) => {
+    if (dragStart !== null) {
+      setDropZone({ x, y });
+      return;
+    }
+    // this updates potentials
+    inspect({ piece, coord: { x, y } });
+  }, [dragStart,
+    setDropZone,
+    inspect]);
+
+
+  const background = useCallback((x: number, y: number) => {
+    if (dragStart !== null) {
+      if (dropZone && x === dropZone.x && y === dropZone.y) {
+        return potentials.some(p => p.coord.x === dropZone.x && p.coord.y === dropZone.y) ? 'green' : 'orange';
+      }
+    }
+    return potentials.some(p => p.coord.x === x && p.coord.y === y) ? "blue" : "";
+  }, [dragStart, dropZone, potentials]);
+
+  return (
+    <>
+      <div className="game-board" style={{ border: "3px solid black", width: "fit-content", margin: "auto auto" }}>
+        {board.map((row, rowIndex) => (
+          <div key={rowIndex} className="board-row" style={{ display: "flex", flexDirection: "row" }}>
+            {row.map((cell, colIndex) => {
+              return (
+                <div key={rowIndex + "-" + colIndex} style={{ border: "1px solid black" }}>
+                  <Tile piece={cell}
+                    x={colIndex}
+                    y={rowIndex}
+                    handleMouseDown={handleCellClick}
+                    handleMouseUp={handleCellDragEnd}
+                    handleMouseMove={handleHoverAndDrag}
+                    highlightFunction={background} />
+                </div>
+              )
+            })}
+          </div>
+        ))}
+      </div>
+    </>
+  );
+};
