@@ -8,7 +8,6 @@ import {
 import { BoardState } from "../schema";
 
 
-// Reducer
 export function reducer(state: BoardState, action: Action): BoardState {
   switch (action.type) {
     case ActionType.BANNER_TRANSITION:

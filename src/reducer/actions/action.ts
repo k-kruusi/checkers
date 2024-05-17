@@ -1,6 +1,6 @@
 import { MovePieceAction } from "./moveAction";
 import { ResetGameAction } from "./resetGameAction";
-import { BannerTransitionAction } from "./annerTransitionAction";
+import { BannerTransitionAction } from "./bannerTransitionAction";
 import { ClearMessageAction } from "./clearMessageAction";
 
 export enum ActionType {
