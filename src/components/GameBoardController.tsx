@@ -5,11 +5,12 @@ import { useCheckers, useNextMove } from '../hooks';
 import { ActionType } from '../reducer';
 import { Coord, MoveResult, Piece } from '../schema';
 import { Tile } from './Tile';
+import { BannerController } from './BannerController';
 
 
 export const GameBoardController: React.FC = () => {
   const { state, dispatch } = useCheckers();
-  const { board, currentPlayer } = state;
+  const { board, turn } = state;
   const { inspect, potentials, clear } = useNextMove();
 
   const [dragStart, setDragStart] = useState<Coord | null>(null);
@@ -77,24 +78,28 @@ export const GameBoardController: React.FC = () => {
 
   return (
     <>
-      <div className="game-board" style={{ border: "3px solid black", width: "fit-content", margin: "auto auto" }}>
+      <div className="game-board" style={{ border: "3px solid black", width: "fit-content", margin: "auto auto", position: "relative" }}>
         {board.map((row, rowIndex) => (
           <div key={rowIndex} className="board-row" style={{ display: "flex", flexDirection: "row" }}>
             {row.map((cell, colIndex) => {
               return (
                 <div key={rowIndex + "-" + colIndex} style={{ border: "1px solid black" }}>
-                  <Tile piece={cell}
+                  <Tile
+                    piece={cell}
                     x={colIndex}
                     y={rowIndex}
+                    turn={turn}
                     handleMouseDown={handleCellClick}
                     handleMouseUp={handleCellDragEnd}
                     handleMouseMove={handleHoverAndDrag}
-                    highlightFunction={background} />
+                    highlightFunction={background}
+                  />
                 </div>
               )
             })}
           </div>
         ))}
+        <BannerController />
       </div>
     </>
   );

@@ -1,19 +1,16 @@
-import { MoveResult, Piece } from "./types";
-
-
-
+import { Outcome, Piece, TileData, TurnState, TurnType } from "./types";
 
 export interface BoardState {
   board: Piece[][];
-  currentPlayer: Piece;
+  turn: TurnState;
   winner: Piece | null;
-  moveHistory: { from: [number, number]; to: [number, number]; result: MoveResult; }[];
+  moveHistory: Outcome[];
   start: Date;
   end: Date | null;
+  lock: TileData | null;
+  message: string | null;
 }
 
-
-// Initial state
 export const initialState: BoardState = {
   board: [
     [Piece.Empty, Piece.Red, Piece.Empty, Piece.Red, Piece.Empty, Piece.Red, Piece.Empty, Piece.Red],
@@ -25,9 +22,11 @@ export const initialState: BoardState = {
     [Piece.Empty, Piece.Black, Piece.Empty, Piece.Black, Piece.Empty, Piece.Black, Piece.Empty, Piece.Black],
     [Piece.Black, Piece.Empty, Piece.Black, Piece.Empty, Piece.Black, Piece.Empty, Piece.Black, Piece.Empty],
   ],
-  currentPlayer: Piece.Black,
+  turn: { type: TurnType.Black, count: 0 },
   winner: null,
   moveHistory: [],
   start: new Date(),
   end: null,
+  lock: null,
+  message: null,
 };

@@ -1,4 +1,5 @@
 export * from './action';
-export * from './handleMoveAction';
+export * from './moveAction';
 export * from './resetGameAction';
-export * from './loadStateAction';
+export * from './annerTransitionAction';
+export * from './clearMessageAction';

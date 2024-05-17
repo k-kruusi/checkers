@@ -1,0 +1,35 @@
+/* BannerController.css */
+.banner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px 40px;
+  color: white;
+  font-size: 2em;
+  text-align: center;
+  border-radius: 10px;
+  z-index: 1000;
+  /* Ensure the banner is on top */
+  animation: fadeInOut 1s ease-in;
+  user-select: none;
+}
+
+.black-banner {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.red-banner {
+  background-color: rgba(255, 0, 0, 0.8);
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+}

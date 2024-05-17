@@ -1,11 +1,12 @@
-import { Piece } from "../schema"
-import { isKing } from "../utils";
+import { Piece, TurnState } from "../schema"
+import { isTileActive, isBlack, isKing } from "../utils";
 
 
-export const Tile = ({ piece, x, y, handleMouseDown, handleMouseUp, handleMouseMove, highlightFunction }: {
+export const Tile = ({ piece, x, y, turn, handleMouseDown, handleMouseUp, handleMouseMove, highlightFunction }: {
   piece: Piece,
   x: number,
   y: number,
+  turn: TurnState,
   handleMouseDown: (piece: Piece, x: number, y: number) => void,
   handleMouseUp: (x: number, y: number) => void,
   handleMouseMove: (piece: Piece, x: number, y: number) => void,
@@ -30,19 +31,21 @@ export const Tile = ({ piece, x, y, handleMouseDown, handleMouseUp, handleMouseM
   const highlight = highlightFunction(x, y);
   const content = isKing(piece) ? "K" : "";
 
+  const isActive = isTileActive(turn.type, piece);
+
   return (<button onMouseDown={(e) => {
     e.stopPropagation();
-    handleMouseDown(piece, x, y)
+    isActive && handleMouseDown(piece, x, y)
   }}
     onMouseUp={(e) => {
       e.stopPropagation();
-      handleMouseUp(x, y)
+      isActive && handleMouseUp(x, y)
     }}
     onMouseMove={(e) => {
       e.stopPropagation();
-      handleMouseMove(piece, x, y)
+      isActive && handleMouseMove(piece, x, y)
     }}
     style={{ backgroundColor: highlight }}>
-    <div style={{ borderRadius: "50%", width: 100, height: 100, backgroundColor: tileColor, color: "white", display: "flex", justifyContent: "center", alignItems: "center" }}>{content}</div>
+    <div style={{ borderRadius: "50%", width: 100, height: 100, backgroundColor: tileColor, color: "white", display: "flex", justifyContent: "center", alignItems: "center", userSelect: "none" }}>{content}</div>
   </button>);
 }

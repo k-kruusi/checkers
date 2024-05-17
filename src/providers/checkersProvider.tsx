@@ -6,15 +6,13 @@ import { useCheckersHook, } from '../hooks';
 export const CheckersContext = createContext<{
   state: BoardState;
   dispatch: React.Dispatch<Action>;
-  saveCurrentState: () => void;
-  loadLastSave: () => void;
 } | null>(null);
 
 export const CheckersProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const { state, dispatch, saveCurrentState, loadLastSave } = useCheckersHook();
+  const { state, dispatch } = useCheckersHook();
 
   return (
-    <CheckersContext.Provider value={{ state, dispatch, saveCurrentState, loadLastSave }}>
+    <CheckersContext.Provider value={{ state, dispatch }}>
       {children}
     </CheckersContext.Provider>
   );

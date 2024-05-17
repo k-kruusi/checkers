@@ -1,5 +1,5 @@
-import { BoardState } from "../../schema";
-import { cloneInitialState } from "../../utils";
+import { BoardState, initialState } from "../../schema";
+import { cloneState } from "../../utils";
 import { ActionType } from "./action";
 
 export interface ResetGameAction {
@@ -7,5 +7,5 @@ export interface ResetGameAction {
 }
 
 export function handleResetGameAction(state: BoardState, _: ResetGameAction) {
-  return cloneInitialState();
+  return cloneState();
 }

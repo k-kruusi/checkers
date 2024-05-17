@@ -1,4 +1,13 @@
-import { Coord, TileData, Piece, Outcome, up, down, startDirection } from "../schema";
+import {
+  Coord,
+  TileData,
+  Piece,
+  Outcome,
+  up,
+  down,
+  startDirection,
+  TurnType
+} from "../schema";
 
 export function kingMe(piece: Piece) {
   switch (piece) {
@@ -15,13 +24,6 @@ export function kingMe(piece: Piece) {
 
 export function isKing(piece: Piece) {
   return piece === Piece.BlackKing || piece === Piece.RedKing;
-}
-
-export function getKingStatus(piece: Piece, col: number) {
-  if (isKing(piece)) {
-    return true;
-  }
-  return (isBlack(piece) && col === 0) || (isRed(piece) && col === 7);
 }
 
 export function isBlack(piece: Piece) {
@@ -58,21 +60,6 @@ export function isOccupiedByOpponent(myPiece: Piece, otherPiece: Piece) {
   }
 }
 
-export function collectEliminations(path: Outcome[]): TileData[] {
-  // using the path taken, count the eliminations for this option. 
-  // json conversion and string compare is used to compare unique objects
-  try {
-    const items = path.map((item) => item.eliminated)
-      .flat()
-      .map(item => JSON.stringify(item));
-    const set = new Set(items);
-    return Array.from(set).map(item => JSON.parse(item) as TileData);
-  }
-  catch (e) {
-    throw new Error(`Error coalescing eliminations: ${e}`);
-  }
-}
-
 export function getDirectionFor(piece: Piece, lastBackDirection: Coord) {
   let directions: Coord[] = [];
   switch (piece) {
@@ -97,4 +84,14 @@ export function getDirectionFor(piece: Piece, lastBackDirection: Coord) {
     directions = directions.filter((item) => item.x !== lastBackDirection.x || item.y !== lastBackDirection.y);
   }
   return directions;
+}
+
+export function isTileActive(turnType: TurnType, piece: Piece) {
+  if (turnType === TurnType.TransitionToBlack || turnType == TurnType.TransitionToRed) {
+    return false;
+  }
+  if (piece === Piece.Empty) {
+    return true;
+  }
+  return turnType === TurnType.Black ? isBlack(piece) : isRed(piece);
 }
