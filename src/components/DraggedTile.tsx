@@ -18,7 +18,7 @@ export const DraggedTile = ({ piece, position }: { piece: Piece | null, position
       opacity: '50%'
     }}
     >
-      <PieceTile piece={piece} />
+      <PieceTile piece={piece} isDragged={true} />
     </div>
   </>
   );

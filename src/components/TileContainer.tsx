@@ -1,43 +1,8 @@
 import { Piece, TurnState } from "../schema"
-import { darkenColor, theme } from "../theme";
-import { isTileActive, isKing, nameForTile, colorForPiece } from "../utils";
+import { isTileActive, nameForTile, } from "../utils";
+import { EmptyTile } from "./EmptyTile";
+import { OccupiedTile } from "./OccupiedTile";
 
-const EmptyTile = ({ piece }: { piece: Piece }) => {
-  const tileColor = colorForPiece(piece);
-  const emptyTileStyle: React.CSSProperties = {
-    borderRadius: "50%",
-    width: 'calc(100vw * 0.0625)',
-    height: 'calc(100vw * 0.0625)',
-    backgroundColor: tileColor,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    userSelect: "none"
-  };
-  return <div style={emptyTileStyle} />;
-}
-
-export const PieceTile = ({ piece }: { piece: Piece }) => {
-  const pieceColor = colorForPiece(piece);
-  const fullTileStyle: React.CSSProperties = {
-    borderRadius: "50%",
-    width: 'calc(100vw * 0.0625)',
-    height: 'calc(100vw * 0.0625)',
-    background: `radial-gradient(circle, ${pieceColor} 20%, ${darkenColor(pieceColor, 0.2)} 70%)`,
-    color: theme.colors.ivory,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    userSelect: "none",
-    pointerEvents: "auto",
-    zIndex: 1
-  };
-
-  const content = isKing(piece) ? "K" : "";
-  return (<div style={fullTileStyle}>
-    {content}
-  </div>);
-}
 
 export const TileContainer = ({ piece, x, y, turn, handleMouseDown, handleMouseUp, handleMouseMove, getTileColor }: {
   piece: Piece,
@@ -57,7 +22,7 @@ export const TileContainer = ({ piece, x, y, turn, handleMouseDown, handleMouseU
 
   const content = piece === Piece.Empty ?
     <EmptyTile piece={piece} /> :
-    <PieceTile piece={piece} />;
+    <OccupiedTile piece={piece} isDragged={false} />;
 
   return (
     <div
@@ -70,7 +35,6 @@ export const TileContainer = ({ piece, x, y, turn, handleMouseDown, handleMouseU
         isActive && handleMouseUp(x, y)
       }}
       onMouseMove={(e) => {
-        e.stopPropagation();
         isActive && handleMouseMove(piece, x, y)
       }}
       style={containerStyle}
