@@ -1,13 +1,32 @@
 
 
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useCheckers, useNextMove } from '../hooks';
 import { ActionType } from '../reducer';
 import { Coord, MoveResult, Piece } from '../schema';
-import { Tile } from './Tile';
+import { TileContainer } from './TileContainer';
 import { BannerController } from './BannerController';
 import { ResetButton } from './ResetButton';
+import { theme } from '../theme';
+import { DraggedTile } from './DraggedTile';
 
+const gameBoardStyle: React.CSSProperties = {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(8, auto)',
+  gap: 0,
+  border: `4px solid ${theme.colors.gold}`,
+  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+  borderRadius: 4,
+  padding: 4,
+}
+
+const gameBoardContainerStyle: React.CSSProperties = {
+  position: 'relative',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  padding: 20
+}
 
 export const GameBoardController: React.FC = () => {
   const { state, dispatch } = useCheckers();
@@ -17,17 +36,34 @@ export const GameBoardController: React.FC = () => {
   const [dragStart, setDragStart] = useState<Coord | null>(null);
   const [dragPieceColor, setDragPieceColor] = useState<Piece | null>(null);
   const [dropZone, setDropZone] = useState<Coord | null>(null);
+  const [dragPiece, setDragPiece] = useState<Piece | null>(null);
+  const [position, setPosition] = useState<Coord | null>(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setPosition({ x: e.clientX, y: e.clientY });
+      console.log(e.clientX, e.clientY);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [setPosition]);
 
   const handleCellClick = useCallback((piece: Piece, x: number, y: number) => {
     if (piece === Piece.Empty) {
       return;
     }
+    setDragPiece(piece);
     setDragStart({ x, y });
     inspect({ piece, coord: { x, y } });
     setDragPieceColor(piece);
   }, [inspect, setDragStart, setDragPieceColor]);
 
   const handleCellDragEnd = useCallback((x: number, y: number) => {
+    setDragPiece(null);
     if (dragStart && dropZone && dragPieceColor && potentials) {
       const chosen = potentials.find((p) => p.coord.x === dropZone.x && p.coord.y === dropZone.y);
       if (!chosen) {
@@ -57,43 +93,58 @@ export const GameBoardController: React.FC = () => {
     inspect({ piece, coord: { x, y } });
   }, [dragStart, setDropZone, inspect]);
 
-  const highlight = useCallback((x: number, y: number) => {
+  const getTileColor = useCallback((x: number, y: number) => {
     if (dragStart !== null) {
       if (dropZone && x === dropZone.x && y === dropZone.y) {
-        return potentials.some(p => p.coord.x === dropZone.x && p.coord.y === dropZone.y) ? 'green' : 'orange';
+        return potentials.some(p => p.coord.x === dropZone.x && p.coord.y === dropZone.y) ?
+          theme.colors.green :
+          theme.colors.gold;
       }
     }
-    return potentials.some(p => p.coord.x === x && p.coord.y === y) ? "blue" : "";
+    const isOddRow = y % 2 === 0 ? false : true;
+    const isOddTile = x % 2 === 0 ? false : true;
+    const defaultTileBackground = isOddRow ?
+      isOddTile ?
+        theme.colors.ivory :
+        theme.colors.grey :
+      !isOddTile ?
+        theme.colors.ivory :
+        theme.colors.grey;
+
+    return potentials.some(p => p.coord.x === x && p.coord.y === y) ?
+      theme.colors.blue :
+      defaultTileBackground;
   }, [dragStart, dropZone, potentials]);
 
   return (
     <>
-      <div style={{ padding: 10 }}>
-        <ResetButton />
-      </div>
-      <div className="game-board" style={{ border: "3px solid black", width: "fit-content", margin: "auto auto", position: "relative" }}>
-        {board.map((row, rowIndex) => (
-          <div key={rowIndex} className="board-row" style={{ display: "flex", flexDirection: "row" }}>
-            {row.map((cell, colIndex) => {
-              return (
-                <div key={rowIndex + "-" + colIndex} style={{ border: "1px solid black" }}>
-                  <Tile
-                    piece={cell}
-                    x={colIndex}
-                    y={rowIndex}
-                    turn={turn}
-                    handleMouseDown={handleCellClick}
-                    handleMouseUp={handleCellDragEnd}
-                    handleMouseMove={handleHoverAndDrag}
-                    highlightFunction={highlight}
-                  />
-                </div>
-              )
-            })}
-          </div>
-        ))}
+      <div style={gameBoardContainerStyle}>
+        <div style={gameBoardStyle}>
+          {
+            board.map((row, rowIndex) => (
+              row.map((cell, colIndex) => {
+                return (
+                  <div key={rowIndex + "-" + colIndex} >
+                    <TileContainer
+                      piece={cell}
+                      x={colIndex}
+                      y={rowIndex}
+                      turn={turn}
+                      handleMouseDown={handleCellClick}
+                      handleMouseUp={handleCellDragEnd}
+                      handleMouseMove={handleHoverAndDrag}
+                      getTileColor={getTileColor}
+                    />
+                  </div>
+                )
+              })
+            ))
+          }
+        </div>
         <BannerController />
       </div>
+      <ResetButton />
+      <DraggedTile piece={dragPiece} position={position} />
     </>
   );
 };

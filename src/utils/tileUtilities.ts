@@ -97,4 +97,30 @@ export function isTileActive(phase: GamePhase, piece: Piece) {
   }
 }
 
+export function colorForPiece(piece: Piece) {
+  switch (piece) {
+    case Piece.Empty:
+      return "";
+    case Piece.Black:
+    case Piece.BlackKing:
+      return "#222222";
+    case Piece.Red:
+    case Piece.RedKing:
+      return "#e74c3c";
+  }
+}
 
+export function nameForTile(piece: Piece) {
+  switch (piece) {
+    case Piece.Empty:
+      return "empty";
+    case Piece.Black:
+      return "black";
+    case Piece.BlackKing:
+      return "black-king";
+    case Piece.Red:
+      return "red";
+    case Piece.RedKing:
+      return "red-king";
+  }
+}
