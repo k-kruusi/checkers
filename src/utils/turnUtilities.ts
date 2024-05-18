@@ -1,27 +1,38 @@
-import { TurnState, TurnType } from "../schema";
+import { TurnState, GamePhase } from "../schema";
 
 export function next(turnState: TurnState) {
-  switch (turnState.type) {
-    case TurnType.Black:
-      return { ...turnState, type: TurnType.TransitionToRed };
-    case TurnType.Red:
-      return { ...turnState, type: TurnType.TransitionToBlack };
-    case TurnType.TransitionToBlack:
-      return { type: TurnType.Black, count: turnState.count + 1 };
-    case TurnType.TransitionToRed:
-      return { ...turnState, type: TurnType.Red }
+  switch (turnState.phase) {
+    case GamePhase.Black:
+      return { ...turnState, phase: GamePhase.TransitionToRed };
+    case GamePhase.Red:
+      return { ...turnState, phase: GamePhase.TransitionToBlack };
+    case GamePhase.TransitionToBlack:
+      return { phase: GamePhase.Black, count: turnState.count + 1 };
+    case GamePhase.TransitionToRed:
+      return { ...turnState, phase: GamePhase.Red }
   }
 }
 
-export function nameForState(turnType: TurnType) {
-  switch (turnType) {
-    case TurnType.Black:
+export function nameForPhase(phase: GamePhase) {
+  switch (phase) {
+    case GamePhase.Black:
       return "BLACK";
-    case TurnType.Red:
+    case GamePhase.Red:
       return "RED";
-    case TurnType.TransitionToBlack:
+    case GamePhase.TransitionToBlack:
       return "TransitionToBlack";
-    case TurnType.TransitionToRed:
+    case GamePhase.TransitionToRed:
       return "TransitionToRed";
+  }
+}
+
+export function reducePhase(phase: GamePhase) {
+  switch (phase) {
+    case GamePhase.Black:
+    case GamePhase.TransitionToBlack:
+      return GamePhase.Black;
+    case GamePhase.Red:
+    case GamePhase.TransitionToRed:
+      return GamePhase.Red;
   }
 }

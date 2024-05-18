@@ -1,5 +1,5 @@
 import { Piece, TurnState } from "../schema"
-import { isTileActive, isBlack, isKing } from "../utils";
+import { isTileActive, isKing } from "../utils";
 
 
 export const Tile = ({ piece, x, y, turn, handleMouseDown, handleMouseUp, handleMouseMove, highlightFunction }: {
@@ -31,7 +31,7 @@ export const Tile = ({ piece, x, y, turn, handleMouseDown, handleMouseUp, handle
   const highlight = highlightFunction(x, y);
   const content = isKing(piece) ? "K" : "";
 
-  const isActive = isTileActive(turn.type, piece);
+  const isActive = isTileActive(turn.phase, piece);
 
   return (<button onMouseDown={(e) => {
     e.stopPropagation();

@@ -12,7 +12,7 @@ export enum MoveResult {
   Jump,
 }
 
-export enum TurnType {
+export enum GamePhase {
   Black,
   Red,
   TransitionToBlack,
@@ -21,7 +21,7 @@ export enum TurnType {
 
 // Types
 export type TurnState = {
-  type: TurnType;
+  phase: GamePhase;
   count: number;
 }
 

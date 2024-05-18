@@ -6,6 +6,7 @@ import { ActionType } from '../reducer';
 import { Coord, MoveResult, Piece } from '../schema';
 import { Tile } from './Tile';
 import { BannerController } from './BannerController';
+import { ResetButton } from './ResetButton';
 
 
 export const GameBoardController: React.FC = () => {
@@ -28,32 +29,24 @@ export const GameBoardController: React.FC = () => {
 
   const handleCellDragEnd = useCallback((x: number, y: number) => {
     if (dragStart && dropZone && dragPieceColor && potentials) {
-
       const chosen = potentials.find((p) => p.coord.x === dropZone.x && p.coord.y === dropZone.y);
-
+      if (!chosen) {
+        return;
+      }
       dispatch({
         type: ActionType.MOVE_PIECE,
         from: dragStart,
         to: dropZone,
         piece: dragPieceColor,
-        potentials: potentials,
-        result: chosen?.didJump ? MoveResult.Jump : MoveResult.Shift,
+        potentials: [...potentials],
+        result: chosen.didJump ? MoveResult.Jump : MoveResult.Shift,
       });
     }
-
     setDragStart(null);
     setDragPieceColor(null);
     setDropZone(null);
     clear();
-  }, [dragStart,
-    dropZone,
-    dragPieceColor,
-    potentials,
-    dispatch,
-    setDragStart,
-    setDragPieceColor,
-    setDropZone,
-    clear]);
+  }, [dragStart, dropZone, dragPieceColor, potentials, dispatch, setDragStart, setDragPieceColor, setDropZone, clear]);
 
   const handleHoverAndDrag = useCallback((piece: Piece, x: number, y: number) => {
     if (dragStart !== null) {
@@ -62,12 +55,9 @@ export const GameBoardController: React.FC = () => {
     }
     // this updates potentials
     inspect({ piece, coord: { x, y } });
-  }, [dragStart,
-    setDropZone,
-    inspect]);
+  }, [dragStart, setDropZone, inspect]);
 
-
-  const background = useCallback((x: number, y: number) => {
+  const highlight = useCallback((x: number, y: number) => {
     if (dragStart !== null) {
       if (dropZone && x === dropZone.x && y === dropZone.y) {
         return potentials.some(p => p.coord.x === dropZone.x && p.coord.y === dropZone.y) ? 'green' : 'orange';
@@ -78,6 +68,9 @@ export const GameBoardController: React.FC = () => {
 
   return (
     <>
+      <div style={{ padding: 10 }}>
+        <ResetButton />
+      </div>
       <div className="game-board" style={{ border: "3px solid black", width: "fit-content", margin: "auto auto", position: "relative" }}>
         {board.map((row, rowIndex) => (
           <div key={rowIndex} className="board-row" style={{ display: "flex", flexDirection: "row" }}>
@@ -92,7 +85,7 @@ export const GameBoardController: React.FC = () => {
                     handleMouseDown={handleCellClick}
                     handleMouseUp={handleCellDragEnd}
                     handleMouseMove={handleHoverAndDrag}
-                    highlightFunction={background}
+                    highlightFunction={highlight}
                   />
                 </div>
               )

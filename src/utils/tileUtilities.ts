@@ -2,17 +2,16 @@ import {
   Coord,
   TileData,
   Piece,
-  Outcome,
   up,
   down,
   startDirection,
-  TurnType
+  GamePhase
 } from "../schema";
 
 export function kingMe(piece: Piece) {
   switch (piece) {
     case Piece.Empty:
-      throw new Error("shouldnt happen");
+      return Piece.Empty;
     case Piece.Black:
     case Piece.BlackKing:
       return Piece.BlackKing;
@@ -43,7 +42,6 @@ export function equalCoords(coord1: Coord, coord2: Coord): boolean {
 }
 
 export function isInBounds(newRow: number, newCol: number, board: Piece[][]): boolean {
-  // technically this would work with any size board
   return newRow >= 0 && newRow < board.length && newCol >= 0 && newCol < board[0].length;
 }
 
@@ -80,18 +78,23 @@ export function getDirectionFor(piece: Piece, lastBackDirection: Coord) {
   // if we are a king we filter the direction we came from when doing multiple jumps
   // first itteration the filtering is skipped, by checking against the startDirection
   if (isKing(piece) && !equalCoords(lastBackDirection, startDirection)) {
-
     directions = directions.filter((item) => item.x !== lastBackDirection.x || item.y !== lastBackDirection.y);
   }
   return directions;
 }
 
-export function isTileActive(turnType: TurnType, piece: Piece) {
-  if (turnType === TurnType.TransitionToBlack || turnType == TurnType.TransitionToRed) {
-    return false;
-  }
+export function isTileActive(phase: GamePhase, piece: Piece) {
   if (piece === Piece.Empty) {
     return true;
   }
-  return turnType === TurnType.Black ? isBlack(piece) : isRed(piece);
+  switch (phase) {
+    case GamePhase.Black:
+    case GamePhase.TransitionToBlack:
+      return isBlack(piece);
+    case GamePhase.Red:
+    case GamePhase.TransitionToRed:
+      return isRed(piece);
+  }
 }
+
+

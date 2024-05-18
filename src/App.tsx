@@ -11,7 +11,6 @@ function App() {
         <NextMoveInspectorProvider>
           <GameBoardController />
           <StateExplorer />
-
         </NextMoveInspectorProvider>
       </CheckersProvider>
     </div>

@@ -1,7 +1,7 @@
-import { useContext, useMemo, useReducer, useState } from 'react';
+import { useContext, useReducer } from 'react';
 import { CheckersContext } from '../providers';
 import { reducer } from '../reducer';
-import { cloneState, getPieces } from '../utils';
+import { cloneState } from '../utils';
 
 export const useCheckers = () => {
   const context = useContext(CheckersContext);

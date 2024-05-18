@@ -2,6 +2,7 @@ import {
   Action,
   ActionType,
   handleBannerTransition,
+  handleClearMessageAction,
   handleMovePieceAction,
   handleResetGameAction,
 } from "./actions";
@@ -16,6 +17,8 @@ export function reducer(state: BoardState, action: Action): BoardState {
       return handleMovePieceAction(state, action);
     case ActionType.RESET_GAME:
       return handleResetGameAction(state, action);
+    case ActionType.CLEAR_MESSAGE:
+      return handleClearMessageAction(state, action);
     default:
       return state;
   }

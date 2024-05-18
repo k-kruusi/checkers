@@ -1,20 +1,9 @@
 import {
-  BoardState,
-  Coord,
-  Outcome,
-  Piece,
-  TileData,
-  TurnType,
-  initialState
+  BoardState, Coord, GamePhase, Outcome, Piece, TileData, initialState
 } from '../../schema';
 import {
-  calculatePotentialMoves,
-  cloneState,
-  collectEliminations,
-  getKingStatus,
-  getPieces,
-  isJumpPossible,
-  updateBoard
+  calculatePotentialMoves, checkForWinner, cloneState, collectEliminations,
+  getKingStatus, getPieces, isJumpPossible, updateBoard
 } from '../boardUtilities';
 import { isBlack, isRed } from '../tileUtilities';
 
@@ -22,7 +11,7 @@ import { isBlack, isRed } from '../tileUtilities';
 describe('cloneState function', () => {
   const testState: BoardState = {
     board: [[Piece.Black, Piece.Empty], [Piece.Empty, Piece.Red]],
-    turn: { type: TurnType.Black, count: 0 },
+    turn: { phase: GamePhase.Black, count: 0 },
     winner: null,
     moveHistory: [],
     start: new Date(),
@@ -335,8 +324,8 @@ describe('getKingStatus function', () => {
     expect(getKingStatus(Piece.Black, 0, board)).toBe(true);
   });
 
-  it('should return true for Red pieces in column 7', () => {
-    expect(getKingStatus(Piece.Red, 3, board)).toBe(true);
+  it('should return true for Red pieces in the bottom column', () => {
+    expect(getKingStatus(Piece.Red, 2, board)).toBe(true);
   });
 
   it('should return false for other pieces and columns', () => {
@@ -409,5 +398,55 @@ describe('updateBoard', () => {
     const newBoard = updateBoard(initialBoard, from, to, myMove);
 
     expect(newBoard).toEqual(expectedBoard);
+  });
+});
+
+describe('checkForWinner', () => {
+  it('should return Piece.Red when there are no black pieces left', () => {
+    const board: Piece[][] = [
+      [Piece.Empty, Piece.Empty, Piece.Empty],
+      [Piece.Empty, Piece.Empty, Piece.Empty],
+      [Piece.Empty, Piece.Red, Piece.Empty],
+    ];
+
+    const winner = checkForWinner(board);
+
+    expect(winner).toBe(Piece.Red);
+  });
+
+  it('should return Piece.Black when there are no red pieces left', () => {
+    const board: Piece[][] = [
+      [Piece.Empty, Piece.Empty, Piece.Empty],
+      [Piece.Empty, Piece.Black, Piece.Empty],
+      [Piece.Empty, Piece.Empty, Piece.Empty],
+    ];
+
+    const winner = checkForWinner(board);
+
+    expect(winner).toBe(Piece.Black);
+  });
+
+  it('should return null when there are both black and red pieces on the board', () => {
+    const board: Piece[][] = [
+      [Piece.Empty, Piece.Empty, Piece.Empty],
+      [Piece.Empty, Piece.Black, Piece.Empty],
+      [Piece.Empty, Piece.Red, Piece.Empty],
+    ];
+
+    const winner = checkForWinner(board);
+
+    expect(winner).toBeNull();
+  });
+
+  it('should return null when there are no pieces on the board', () => {
+    const board: Piece[][] = [
+      [Piece.Empty, Piece.Empty, Piece.Empty],
+      [Piece.Empty, Piece.Empty, Piece.Empty],
+      [Piece.Empty, Piece.Empty, Piece.Empty],
+    ];
+
+    const winner = checkForWinner(board);
+
+    expect(winner).toBeNull();
   });
 });

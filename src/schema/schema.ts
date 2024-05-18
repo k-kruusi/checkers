@@ -1,4 +1,4 @@
-import { Outcome, Piece, TileData, TurnState, TurnType } from "./types";
+import { GamePhase, Outcome, Piece, TileData, TurnState } from "./types";
 
 export interface BoardState {
   board: Piece[][];
@@ -22,7 +22,7 @@ export const initialState: BoardState = {
     [Piece.Empty, Piece.Black, Piece.Empty, Piece.Black, Piece.Empty, Piece.Black, Piece.Empty, Piece.Black],
     [Piece.Black, Piece.Empty, Piece.Black, Piece.Empty, Piece.Black, Piece.Empty, Piece.Black, Piece.Empty],
   ],
-  turn: { type: TurnType.Black, count: 0 },
+  turn: { phase: GamePhase.Black, count: 0 },
   winner: null,
   moveHistory: [],
   start: new Date(),

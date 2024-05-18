@@ -1,5 +1,5 @@
 import { BoardState, Coord, Outcome, MoveResult, Piece, TileData } from "../../schema";
-import { calculatePotentialMoves, canWeKeepGoing, isJumpPossible, updateBoard } from "../../utils";
+import { checkForWinner, isBlack, isJumpPossible, reducePhase, updateBoard, wasLastMove } from "../../utils";
 import { next } from "../../utils";
 import { ActionType } from "./action";
 
@@ -19,50 +19,68 @@ export const handleMovePieceAction = (state: BoardState, action: MovePieceAction
 
   // failed validation
   if (!myMove) {
-    return { ...state, message };
+    console.log(message);
+    return { ...state, message } as BoardState;
   }
 
   // update the board state
   const newBoard = updateBoard(board, from, to, myMove);
 
-  // TODO: check win conditions
+  // check win conditions
+  const winner = checkForWinner(newBoard);
+  if (winner) {
+
+    return {
+      ...state,
+      board: newBoard,
+      winner,
+      turn,
+      moveHistory: [...moveHistory, myMove],
+      lock: null,
+      message: `${isBlack(winner) ? "Black" : "Red"} Wins!`
+    } as BoardState;
+  }
 
   // check if theres an additional move available before before swapping the turn over (with this piece)
-  let notFinished = canWeKeepGoing(newBoard, result, to)
+  let isFinished = wasLastMove(newBoard, result, to)
 
   // if you do an incomplete move, a lock gets set, since your turn could continue, 
   // you must continue moving that tile.
   const myTile: TileData = { piece: myMove.piece, coord: { x: to.x, y: to.y } };
-
-  return {
+  const nextTurn = next({ phase: reducePhase(turn.phase), count: turn.count });
+  const newState: BoardState = {
     ...state,
     board: newBoard,
-    turn: notFinished ? turn : next(turn),
+    turn: isFinished ? nextTurn : turn,
     moveHistory: [...moveHistory, myMove],
-    lock: notFinished ? myTile : null,
+    lock: isFinished ? null : myTile,
     message: null,
-  } as BoardState;
+  };
+
+  return newState;
 };
 
-export function validateMovePieceAction(state: BoardState, action: MovePieceAction) {
+export function validateMovePieceAction(state: BoardState, action: MovePieceAction): { message?: string, myMove?: Outcome } {
   const { from, result, potentials, to, piece } = action;
   const { board } = state;
   // checks for any outstanding locks.
   if (state.lock && (state.lock.coord.x !== from.x || state.lock.coord.y !== from.y)) {
-    return { message: 'must contine with the same tile theres more to go.' };
+    return { message: 'Keep going you have another jump with the peice you already moved.' };
   }
 
   // if you moved a piece (aka a shift), we must check if there was 
   // a jump possible cause it could be an invalid move.
-  if (result === MoveResult.Shift && isJumpPossible(board, piece)) {
-    return { message: 'A jump is possible with another piece.' };
+  const isJumpAvailable = isJumpPossible(board, piece);
+  if (result === MoveResult.Shift && isJumpAvailable) {
+    return { message: 'A jump is possible find it.' };
   }
 
   // validate step (move should be one of the valid ones for this piece potentials);
   const myMove = potentials.find((p) => p.coord.x === to.x && p.coord.y === to.y);
   if (!myMove) {
-    return { message: 'invalid move.' };
+    return { message: 'Invalid move.' };
   }
   return { myMove }
 }
+
 

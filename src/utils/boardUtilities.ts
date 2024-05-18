@@ -31,6 +31,8 @@ export function cloneState(state?: BoardState) {
   };
 }
 
+const standardBoardMaxJumps = 24;
+
 export function calculatePotentialMoves(board: Piece[][], coord: Coord): Outcome[] {
   const row = coord.x;
   const col = coord.y;
@@ -78,7 +80,7 @@ export function calculatePotentialMoves(board: Piece[][], coord: Coord): Outcome
           const step: Outcome = {
             piece: isNowKing ? kingMe(currentPiece) : currentPiece,
             coord: { x: newRow, y: newCol },
-            didJump: haveJumpedAlready,
+            didJump: false,
             eliminated: [],
             backDirection: { x: -x, y: -y }
           }
@@ -115,12 +117,14 @@ export function calculatePotentialMoves(board: Piece[][], coord: Coord): Outcome
               const path = [...movements, step];
               potentialMoves.push({ ...step, eliminated: eliminationsSoFar });
 
-              // added a hard stop to our loop 
-              // just to be safe
-              if (path.length < 24) {
+
+              if (path.length < standardBoardMaxJumps) {
                 jumpStack.push(path);
               }
               else {
+                // added a hard stop to our loop 
+                // just to be safe
+                // dont believe its ever called
                 throw new Error('break');
               }
             }
@@ -187,7 +191,7 @@ export function getKingStatus(piece: Piece, col: number, board: Piece[][]) {
   if (isKing(piece)) {
     return true;
   }
-  return (isBlack(piece) && col === 0) || (isRed(piece) && col === board.length);
+  return (isBlack(piece) && col === 0) || (isRed(piece) && col === board.length - 1);
 }
 
 export function updateBoard(board: Piece[][], from: Coord, to: Coord, myMove: Outcome) {
@@ -201,14 +205,35 @@ export function updateBoard(board: Piece[][], from: Coord, to: Coord, myMove: Ou
   return newBoard;
 }
 
-export function canWeKeepGoing(newBoard: Piece[][], result: MoveResult, to: Coord) {
-  if (result === MoveResult.Jump) {
-    try {
-      const moreMovesAvailable = calculatePotentialMoves(newBoard, { x: to.x, y: to.y }).filter((item) => item.didJump).length;
-      return moreMovesAvailable > 0;
-    } catch (e) {
-      console.error("Error calculating potential moves", e);
-    }
+export function wasLastMove(newBoard: Piece[][], result: MoveResult, to: Coord) {
+  if (result === MoveResult.Shift) {
+    return true;
   }
-  return false;
+
+  try {
+    const moreMovesAvailable = calculatePotentialMoves(newBoard, { x: to.x, y: to.y }).filter((item) => item.didJump).length;
+    console.log('moreMovesAvailable: ', moreMovesAvailable);
+    return moreMovesAvailable === 0;
+  } catch (e) {
+    console.error("Error calculating potential moves", e);
+    return true;
+  }
+}
+
+export function checkForWinner(board: Piece[][]) {
+  const { black, red } = getPieces(board);
+
+  if (black.length === 0 && red.length === 0) {
+    return null;
+  }
+
+  if (black.length === 0) {
+    return Piece.Red;
+  }
+
+  if (red.length === 0) {
+    return Piece.Black;
+  }
+
+  return null;
 }
