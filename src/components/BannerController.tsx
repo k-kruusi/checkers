@@ -4,7 +4,6 @@ import { GamePhase } from "../schema";
 import { ActionType } from "../reducer";
 import { getBannerBgColor } from "../theme";
 
-
 const sharedBannerStyles: React.CSSProperties = {
   position: "absolute",
   top: "50%",

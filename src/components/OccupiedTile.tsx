@@ -1,25 +1,39 @@
-import { Piece } from "../schema";
-import { darkenColor, theme } from "../theme";
-import { colorForPiece, isKing } from "../utils";
+import { Coord, Piece } from "../schema";
+import { theme } from "../theme";
+import { isBlack, isKing } from "../utils";
 
-export const OccupiedTile = ({ piece, isDragged }: { piece: Piece, isDragged: boolean }) => {
-  const pieceColor = colorForPiece(piece);
-  const fullTileStyle: React.CSSProperties = {
-    borderRadius: "50%",
-    width: 'calc(100vw * 0.0625)',
-    height: 'calc(100vw * 0.0625)',
-    background: `radial-gradient(circle, ${pieceColor} 20%, ${darkenColor(pieceColor, 0.2)} 70%)`,
-    color: theme.colors.ivory,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    userSelect: "none",
-    pointerEvents: isDragged ? "none" : "auto",
-    zIndex: 1
-  };
 
+
+
+export type OccupiedTileProps = {
+  piece: Piece;
+  coord: Coord;
+  isDragging: Coord | null;
+  isActive: boolean;
+  onDragStart: (e: React.DragEvent<HTMLDivElement>) => void;
+  onMouseOver: () => void;
+}
+
+export const OccupiedTile: React.FC<OccupiedTileProps> = ({ piece, coord, isDragging, isActive, onDragStart, onMouseOver }) => {
+  const shouldFade = isDragging && isDragging.x === coord.x && isDragging.y === coord.y;
   const content = isKing(piece) ? "K" : "";
-  return (<div style={fullTileStyle}>
-    {content}
-  </div>);
+
+  const style = {
+    width: 'calc(100vw * 0.0655)',
+    height: 'calc(100vw * 0.0655)',
+    backgroundColor: isBlack(piece) ? theme.colors.black : theme.colors.red,
+    borderRadius: '50%',
+    opacity: shouldFade ? 0.5 : 1
+  }
+
+  return (
+    <div
+      style={style}
+      draggable={isActive && !isDragging}
+      onDragStart={onDragStart}
+      onMouseMove={onMouseOver}
+    >
+      {content}
+    </div>
+  );
 }

@@ -1,14 +1,12 @@
-
-
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useCheckers, useNextMove } from '../hooks';
-import { ActionType } from '../reducer';
 import { Coord, MoveResult, Piece } from '../schema';
 import { TileContainer } from './TileContainer';
 import { BannerController } from './BannerController';
 import { ResetButton } from './ResetButton';
 import { theme } from '../theme';
-import { DraggedTile } from './DraggedTile';
+import { ActionType } from '../reducer';
+
 
 const gameBoardStyle: React.CSSProperties = {
   display: 'grid',
@@ -31,76 +29,41 @@ const gameBoardContainerStyle: React.CSSProperties = {
 export const GameBoardController: React.FC = () => {
   const { state, dispatch } = useCheckers();
   const { board, turn } = state;
-  const { inspect, potentials, clear } = useNextMove();
+  const { inspect, potentials } = useNextMove();
+  const [isDragging, setIsDragging] = useState<Coord | null>(null);
 
-  const [dragStart, setDragStart] = useState<Coord | null>(null);
-  const [dragPieceColor, setDragPieceColor] = useState<Piece | null>(null);
-  const [dropZone, setDropZone] = useState<Coord | null>(null);
-  const [dragPiece, setDragPiece] = useState<Piece | null>(null);
-  const [position, setPosition] = useState<Coord | null>(null);
+  const handleDrop = useCallback((from: Coord, to: Coord) => {
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
-      console.log(e.clientX, e.clientY);
-    };
+    console.log(`drop at: ${to.x},${to.y}`);
+    console.log(potentials);
 
-    window.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, [setPosition]);
-
-  const handleCellClick = useCallback((piece: Piece, x: number, y: number) => {
-    if (piece === Piece.Empty) {
-      return;
-    }
-    setDragPiece(piece);
-    setDragStart({ x, y });
-    inspect({ piece, coord: { x, y } });
-    setDragPieceColor(piece);
-  }, [inspect, setDragStart, setDragPieceColor]);
-
-  const handleCellDragEnd = useCallback((x: number, y: number) => {
-    setDragPiece(null);
-    if (dragStart && dropZone && dragPieceColor && potentials) {
-      const chosen = potentials.find((p) => p.coord.x === dropZone.x && p.coord.y === dropZone.y);
-      if (!chosen) {
-        return;
-      }
+    const chosen = potentials.find((p) => p.coord.x === to.x && p.coord.y === to.y);
+    if (chosen) {
       dispatch({
         type: ActionType.MOVE_PIECE,
-        from: dragStart,
-        to: dropZone,
-        piece: dragPieceColor,
+        from,
+        to,
+        piece: board[from.y][from.x],
         potentials: [...potentials],
         result: chosen.didJump ? MoveResult.Jump : MoveResult.Shift,
       });
     }
-    setDragStart(null);
-    setDragPieceColor(null);
-    setDropZone(null);
-    clear();
-  }, [dragStart, dropZone, dragPieceColor, potentials, dispatch, setDragStart, setDragPieceColor, setDropZone, clear]);
-
-  const handleHoverAndDrag = useCallback((piece: Piece, x: number, y: number) => {
-    if (dragStart !== null) {
-      setDropZone({ x, y });
-      return;
+    else {
+      console.log('not in chosen');
     }
-    // this updates potentials
-    inspect({ piece, coord: { x, y } });
-  }, [dragStart, setDropZone, inspect]);
+    setIsDragging(null);
+  }, [potentials, dispatch]);
 
-  const getTileColor = useCallback((x: number, y: number) => {
-    if (dragStart !== null) {
-      if (dropZone && x === dropZone.x && y === dropZone.y) {
-        return potentials.some(p => p.coord.x === dropZone.x && p.coord.y === dropZone.y) ?
-          theme.colors.green :
-          theme.colors.gold;
-      }
-    }
+  const handleHover = useCallback((piece: Piece, coord: Coord) => {
+    !isDragging && inspect({ piece, coord });
+  }, [isDragging, inspect]);
+
+  const handleDragStart = useCallback((piece: Piece, coord: Coord) => {
+    setIsDragging(coord);
+    inspect({ piece, coord });
+  }, [setIsDragging, inspect]);
+
+  const getTileColor = (x: number, y: number) => {
     const isOddRow = y % 2 === 0 ? false : true;
     const isOddTile = x % 2 === 0 ? false : true;
     const defaultTileBackground = isOddRow ?
@@ -114,7 +77,7 @@ export const GameBoardController: React.FC = () => {
     return potentials.some(p => p.coord.x === x && p.coord.y === y) ?
       theme.colors.blue :
       defaultTileBackground;
-  }, [dragStart, dropZone, potentials]);
+  };
 
   return (
     <>
@@ -130,10 +93,11 @@ export const GameBoardController: React.FC = () => {
                       x={colIndex}
                       y={rowIndex}
                       turn={turn}
-                      handleMouseDown={handleCellClick}
-                      handleMouseUp={handleCellDragEnd}
-                      handleMouseMove={handleHoverAndDrag}
+                      handleDragStart={handleDragStart}
+                      handleDrop={handleDrop}
+                      handleHover={handleHover}
                       getTileColor={getTileColor}
+                      isDragging={isDragging}
                     />
                   </div>
                 )
@@ -144,7 +108,6 @@ export const GameBoardController: React.FC = () => {
         <BannerController />
       </div>
       <ResetButton />
-      <DraggedTile piece={dragPiece} position={position} />
     </>
   );
 };

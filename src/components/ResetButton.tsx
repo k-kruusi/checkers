@@ -28,7 +28,7 @@ const clickedStyles = {
 }
 
 // would rather do these sort of styles in css with :hover, :focus
-// but im not using any packages and it makes it difficult 
+// but im not using any packages so it makes it difficult 
 // while still wanting to inject my themes.
 // styled components or tailwind would make this easier.
 export const ResetButton = () => {
@@ -46,12 +46,16 @@ export const ResetButton = () => {
       { ...sharedButtonStyle, ...hoverStyles } :
       sharedButtonStyle;
 
-  return (<button
-    style={buttonStyle}
-    aria-label="reset"
-    onMouseOver={() => setIsHovered(true)}
-    onMouseOut={() => setIsHovered(false)}
-    onMouseDown={() => setIsDown(true)}
-    onMouseUp={() => setIsDown(false)}
-    onClick={onClick}>RESET</button>);
+  return (
+    <button
+      style={buttonStyle}
+      aria-label="reset"
+      onMouseOver={() => setIsHovered(true)}
+      onMouseOut={() => setIsHovered(false)}
+      onMouseDown={() => setIsDown(true)}
+      onMouseUp={() => setIsDown(false)}
+      onClick={onClick}>
+      RESET
+    </button>
+  );
 }
