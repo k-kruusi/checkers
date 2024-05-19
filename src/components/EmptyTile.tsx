@@ -1,4 +1,3 @@
-
 const style = {
   width: 'calc(100vw * 0.0655)',
   height: 'calc(100vw * 0.0655)',

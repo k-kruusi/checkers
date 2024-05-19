@@ -10,6 +10,7 @@ interface TileContainerProps {
   turn: TurnState;
   handleDrop: (from: Coord, to: Coord) => void;
   handleDragStart: (piece: Piece, coord: Coord) => void;
+  handleDragEnd: () => void;
   handleHover: (piece: Piece, coord: Coord) => void;
   getTileColor: (x: number, y: number) => string;
   isDragging: Coord | null;
@@ -40,6 +41,9 @@ export const TileContainer: React.FC<TileContainerProps> = ({
   }
 
   const onDragStart = (e: React.DragEvent<HTMLDivElement>) => {
+    if (isDragging) {
+      return;
+    }
     e.dataTransfer.setData('isActive', isActive.toString());
     e.dataTransfer.setData('x', x.toString());
     e.dataTransfer.setData('y', y.toString());

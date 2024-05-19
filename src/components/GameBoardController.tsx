@@ -1,11 +1,12 @@
 import React, { useCallback, useState } from 'react';
 import { useCheckers, useNextMove } from '../hooks';
 import { Coord, MoveResult, Piece } from '../schema';
+import { theme } from '../theme';
+import { ActionType } from '../reducer';
 import { TileContainer } from './TileContainer';
 import { BannerController } from './BannerController';
 import { ResetButton } from './ResetButton';
-import { theme } from '../theme';
-import { ActionType } from '../reducer';
+
 
 
 const gameBoardStyle: React.CSSProperties = {
@@ -33,10 +34,6 @@ export const GameBoardController: React.FC = () => {
   const [isDragging, setIsDragging] = useState<Coord | null>(null);
 
   const handleDrop = useCallback((from: Coord, to: Coord) => {
-
-    console.log(`drop at: ${to.x},${to.y}`);
-    console.log(potentials);
-
     const chosen = potentials.find((p) => p.coord.x === to.x && p.coord.y === to.y);
     if (chosen) {
       dispatch({
@@ -54,6 +51,10 @@ export const GameBoardController: React.FC = () => {
     setIsDragging(null);
   }, [potentials, dispatch]);
 
+  const handleDragEnd = useCallback(() => {
+    setIsDragging(null);
+  }, [setIsDragging]);
+
   const handleHover = useCallback((piece: Piece, coord: Coord) => {
     !isDragging && inspect({ piece, coord });
   }, [isDragging, inspect]);
@@ -63,7 +64,7 @@ export const GameBoardController: React.FC = () => {
     inspect({ piece, coord });
   }, [setIsDragging, inspect]);
 
-  const getTileColor = (x: number, y: number) => {
+  const getTileColor = useCallback((x: number, y: number) => {
     const isOddRow = y % 2 === 0 ? false : true;
     const isOddTile = x % 2 === 0 ? false : true;
     const defaultTileBackground = isOddRow ?
@@ -77,11 +78,11 @@ export const GameBoardController: React.FC = () => {
     return potentials.some(p => p.coord.x === x && p.coord.y === y) ?
       theme.colors.blue :
       defaultTileBackground;
-  };
+  }, [potentials]);
 
   return (
     <>
-      <div style={gameBoardContainerStyle}>
+      <div style={gameBoardContainerStyle} onDragEnd={handleDragEnd}>
         <div style={gameBoardStyle}>
           {
             board.map((row, rowIndex) => (
@@ -95,6 +96,7 @@ export const GameBoardController: React.FC = () => {
                       turn={turn}
                       handleDragStart={handleDragStart}
                       handleDrop={handleDrop}
+                      handleDragEnd={handleDragEnd}
                       handleHover={handleHover}
                       getTileColor={getTileColor}
                       isDragging={isDragging}
