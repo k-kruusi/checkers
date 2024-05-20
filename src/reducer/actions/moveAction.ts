@@ -10,11 +10,12 @@ export interface MovePieceAction {
   piece: Piece;
   potentials: Outcome[];
   result: MoveResult;
+  timestamp: string;
 }
 
 export const handleMovePieceAction = (state: BoardState, action: MovePieceAction) => {
   const { from, to, result } = action;
-  const { board, turn, moveHistory } = state;
+  const { board, turn, transformations } = state;
   const { message, myMove } = validateMovePieceAction(state, action);
 
   // failed validation
@@ -35,8 +36,8 @@ export const handleMovePieceAction = (state: BoardState, action: MovePieceAction
       board: newBoard,
       winner,
       turn,
-      moveHistory: [...moveHistory, myMove],
-      lock: null,
+      moveHistory: [...transformations, action],
+      lock: { piece: Piece.Empty, coord: { x: -1, y: -1 } },
       message: `${isBlack(winner) ? "Black" : "Red"} Wins!`
     } as BoardState;
   }
@@ -52,11 +53,13 @@ export const handleMovePieceAction = (state: BoardState, action: MovePieceAction
     ...state,
     board: newBoard,
     turn: isFinished ? nextTurn : turn,
-    moveHistory: [...moveHistory, myMove],
+    transformations: [...transformations, action],
     lock: isFinished ? null : myTile,
     message: null,
   };
 
+  // TODO: remove logging
+  console.log(newState);
   return newState;
 };
 
@@ -68,11 +71,15 @@ export function validateMovePieceAction(state: BoardState, action: MovePieceActi
     return { message: 'Keep going you have another jump with the peice you already moved.' };
   }
 
-  // if you moved a piece (aka a shift), we must check if there was 
-  // a jump possible cause it could be an invalid move.
-  const isJumpAvailable = isJumpPossible(board, piece);
-  if (result === MoveResult.Shift && isJumpAvailable) {
-    return { message: 'A jump is possible find it.' };
+  try {
+    // if you moved a piece (aka a shift), we must check if there was 
+    // a jump possible cause it could be an invalid move.
+    const isJumpAvailable = isJumpPossible(board, piece);
+    if (result === MoveResult.Shift && isJumpAvailable) {
+      return { message: 'A jump is possible find it.' };
+    }
+  } catch (e) {
+    console.error("Error attempting to check if a jump is possible.", e);
   }
 
   // validate step (move should be one of the valid ones for this piece potentials);

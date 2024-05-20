@@ -1,44 +1,33 @@
 .App {
-  text-align: center;
-  background-color: #282c34;
-  width: 100vw;
-  height: 100vh;
+  text-align: left;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  /* Remove default styles */
+  appearance: none;
+  /* Remove default appearance */
+  -webkit-appearance: none;
+  /* For Safari */
+  -moz-appearance: none;
+  /* For Firefox */
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+  /* Remove default borders, padding, and margins */
+  border: none;
+  padding: 0;
+  margin: 0;
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+  /* Remove default background and text color */
+  background: none;
+  color: inherit;
 
-.App-link {
-  color: #61dafb;
-}
+  /* Remove default font settings */
+  font: inherit;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+  /* Remove default cursor */
+  cursor: pointer;
 }
 
 @keyframes fadeIn {

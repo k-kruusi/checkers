@@ -7,6 +7,7 @@ import {
   startDirection,
   GamePhase
 } from "../schema";
+import { theme } from "../theme";
 
 export function kingMe(piece: Piece) {
   switch (piece) {
@@ -103,10 +104,10 @@ export function colorForPiece(piece: Piece) {
       return "";
     case Piece.Black:
     case Piece.BlackKing:
-      return "#222222";
+      return theme.colors.black;
     case Piece.Red:
     case Piece.RedKing:
-      return "#e74c3c";
+      return theme.colors.red;
   }
 }
 

@@ -3,8 +3,10 @@ import {
   ActionType,
   handleBannerTransition,
   handleClearMessageAction,
+  handleForfeitAction,
   handleMovePieceAction,
   handleResetGameAction,
+  handleToggleAIAction,
 } from "./actions";
 import { BoardState } from "../schema";
 
@@ -19,7 +21,12 @@ export function reducer(state: BoardState, action: Action): BoardState {
       return handleResetGameAction(state, action);
     case ActionType.CLEAR_MESSAGE:
       return handleClearMessageAction(state, action);
+    case ActionType.FORFEIT:
+      return handleForfeitAction(state, action);
+    case ActionType.TOGGLE_AI:
+      return handleToggleAIAction(state, action);
     default:
+      console.warn("action not implemented in reducer");
       return state;
   }
 }

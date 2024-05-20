@@ -6,13 +6,17 @@ export const theme = {
     grey: '#464646',
     ivory: '#FFFFF0',
     gold: '#DAA520',
-    black: '#000000',
-    red: '#FF0000',
+    black: '#222222',
+    red: '#e74c3c',
     green: 'green',
     blue: 'blue',
     blackBanner: 'rgba(0, 0, 0, 0.8)',
     redBanner: 'rgba(255, 0, 0, 0.8)',
   },
+  size: {
+    tileSize: 'calc(100vw * 0.0455)',
+    tileSizeMobile: 'calc(100vw * 0.08)',
+  }
 }
 
 export function getBannerBgColor(phase: GamePhase) {

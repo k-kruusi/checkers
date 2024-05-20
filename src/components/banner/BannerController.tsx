@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { useCheckers } from "../hooks";
-import { GamePhase } from "../schema";
-import { ActionType } from "../reducer";
-import { getBannerBgColor } from "../theme";
+import { useCheckers } from "../../hooks";
+import { GamePhase } from "../../schema";
+import { ActionType } from "../../reducer";
+import { getBannerBgColor } from "../../theme";
 
-const sharedBannerStyles: React.CSSProperties = {
+const bannerStyles: React.CSSProperties = {
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -24,15 +24,15 @@ export const BannerController = () => {
   const { turn } = state;
 
   const bgColor = getBannerBgColor(turn.phase);
-  const bannerStyle = {
-    ...sharedBannerStyles, backgroundColor: bgColor
+  const customBannerStyle = {
+    ...bannerStyles, backgroundColor: bgColor
   }
 
   useEffect(() => {
     if ((turn.phase === GamePhase.TransitionToBlack || turn.phase === GamePhase.TransitionToRed)) {
       const timer = setTimeout(() => {
         dispatch({ type: ActionType.BANNER_TRANSITION, currentPhase: turn.phase });
-      }, 1000);
+      }, 1200);
 
       return () => clearTimeout(timer);
     }
@@ -42,19 +42,19 @@ export const BannerController = () => {
     if (state.message) {
       const timer = setTimeout(() => {
         dispatch({ type: ActionType.CLEAR_MESSAGE });
-      }, 1000);
+      }, 1200);
       return () => clearTimeout(timer);
     }
   }, [state.message, dispatch]);
 
   if (turn.phase === GamePhase.TransitionToBlack) {
-    return (<div style={bannerStyle}>Black Turn</div>);
+    return (<div style={customBannerStyle}>Black Turn</div>);
   }
   else if (turn.phase === GamePhase.TransitionToRed) {
-    return (<div style={bannerStyle}>Red Turn</div>);
+    return (<div style={customBannerStyle}>Red Turn</div>);
   }
   else if (state.message && (turn.phase === GamePhase.Black || turn.phase === GamePhase.Red)) {
-    return (<div style={bannerStyle}>{state.message}</div>)
+    return (<div style={customBannerStyle}>{state.message}</div>)
   }
   return null;
 }

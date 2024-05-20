@@ -21,14 +21,8 @@ import {
 
 
 export function cloneState(state?: BoardState) {
-  const isInitial = state === null;
-  const cloneTarget = state ? state : initialState;
-  return {
-    ...cloneTarget,
-    board: [...cloneTarget.board.map(row => [...row])],
-    start: isInitial ? new Date() : cloneTarget.start,
-    end: cloneTarget.end
-  };
+  const copy = JSON.stringify(state ? state : initialState);
+  return JSON.parse(copy) as BoardState;
 }
 
 const standardBoardMaxJumps = 24;
@@ -117,14 +111,14 @@ export function calculatePotentialMoves(board: Piece[][], coord: Coord): Outcome
               const path = [...movements, step];
               potentialMoves.push({ ...step, eliminated: eliminationsSoFar });
 
-
-              if (path.length < standardBoardMaxJumps) {
+              if (path.length <= standardBoardMaxJumps) {
                 jumpStack.push(path);
               }
               else {
                 // added a hard stop to our loop 
                 // just to be safe
                 // dont believe its ever called
+                // anymore but it did help me debug.
                 throw new Error('break');
               }
             }
@@ -134,7 +128,8 @@ export function calculatePotentialMoves(board: Piece[][], coord: Coord): Outcome
     }
   }
 
-  // if theres a jump in the potential moves you must take it
+  // if theres a jump in the potential moves, you must take it.
+  // if not, regular moves are included.
   const filtered = potentialMoves.filter((item) => item.didJump);
   return filtered.length > 0 ? filtered : potentialMoves;
 }
@@ -150,7 +145,8 @@ export function collectEliminations(path: Outcome[]): TileData[] {
     return Array.from(set).map(item => JSON.parse(item) as TileData);
   }
   catch (e) {
-    throw new Error(`Error coalescing eliminations: ${e}`);
+    console.error(`Error coalescing eliminations: ${e}`);
+    return [];
   }
 }
 
@@ -160,7 +156,7 @@ export function getPieces(board: Piece[][]) {
   const tilesWithPieces = board.map((row, y) => {
     return row.map((piece, x) => {
       return { piece, coord: { x, y } } as TileData;
-    }).filter((tileData) => tileData.piece !== Piece.Empty);
+    }).filter((tileData) => tileData.piece !== Piece.Empty)
   }).flat();
 
   const black = tilesWithPieces.filter((item) => isBlack(item.piece));
@@ -201,7 +197,6 @@ export function updateBoard(board: Piece[][], from: Coord, to: Coord, myMove: Ou
     newBoard[eliminate.coord.y][eliminate.coord.x] = Piece.Empty
   });
   newBoard[to.y][to.x] = myMove.piece;
-
   return newBoard;
 }
 
@@ -212,7 +207,6 @@ export function wasLastMove(newBoard: Piece[][], result: MoveResult, to: Coord) 
 
   try {
     const moreMovesAvailable = calculatePotentialMoves(newBoard, { x: to.x, y: to.y }).filter((item) => item.didJump).length;
-    console.log('moreMovesAvailable: ', moreMovesAvailable);
     return moreMovesAvailable === 0;
   } catch (e) {
     console.error("Error calculating potential moves", e);

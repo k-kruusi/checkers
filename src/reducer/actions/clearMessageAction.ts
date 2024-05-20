@@ -5,6 +5,10 @@ export interface ClearMessageAction {
   type: ActionType.CLEAR_MESSAGE;
 }
 
-export function handleClearMessageAction(state: BoardState, _: ClearMessageAction) {
-  return { ...state, message: null };
+export function handleClearMessageAction(state: BoardState, action: ClearMessageAction) {
+  return {
+    ...state,
+    message: null,
+    transformations: [...state.transformations, action]
+  };
 }

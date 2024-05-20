@@ -1,13 +1,9 @@
 import React, { useCallback, useState } from 'react';
-import { useCheckers, useNextMove } from '../hooks';
-import { Coord, MoveResult, Piece } from '../schema';
-import { theme } from '../theme';
-import { ActionType } from '../reducer';
-import { TileContainer } from './TileContainer';
-import { BannerController } from './BannerController';
-import { ResetButton } from './ResetButton';
-
-
+import { useCheckers, useNextMove } from '../../hooks';
+import { Coord, MoveResult, Piece } from '../../schema';
+import { theme } from '../../theme';
+import { ActionType } from '../../reducer';
+import { TileController } from './TileController';
 
 const gameBoardStyle: React.CSSProperties = {
   display: 'grid',
@@ -29,26 +25,30 @@ const gameBoardContainerStyle: React.CSSProperties = {
 
 export const GameBoardController: React.FC = () => {
   const { state, dispatch } = useCheckers();
-  const { board, turn } = state;
-  const { inspect, potentials } = useNextMove();
+  const { board } = state;
+  const { inspect, potentials, clear } = useNextMove();
   const [isDragging, setIsDragging] = useState<Coord | null>(null);
 
   const handleDrop = useCallback((from: Coord, to: Coord) => {
-    const chosen = potentials.find((p) => p.coord.x === to.x && p.coord.y === to.y);
-    if (chosen) {
-      dispatch({
-        type: ActionType.MOVE_PIECE,
-        from,
-        to,
-        piece: board[from.y][from.x],
-        potentials: [...potentials],
-        result: chosen.didJump ? MoveResult.Jump : MoveResult.Shift,
-      });
+    const validMove = potentials.find((p) => p.coord.x === to.x && p.coord.y === to.y);
+    if (!validMove) {
+      console.log('Invalid move attempted.');
+      setIsDragging(null);
+      clear();
+      return;
     }
-    else {
-      console.log('not in chosen');
-    }
+
+    dispatch({
+      type: ActionType.MOVE_PIECE,
+      from,
+      to,
+      piece: board[from.y][from.x],
+      potentials: [...potentials],
+      result: validMove.didJump ? MoveResult.Jump : MoveResult.Shift,
+      timestamp: new Date().toISOString(),
+    });
     setIsDragging(null);
+    clear();
   }, [potentials, dispatch]);
 
   const handleDragEnd = useCallback(() => {
@@ -89,11 +89,10 @@ export const GameBoardController: React.FC = () => {
               row.map((cell, colIndex) => {
                 return (
                   <div key={rowIndex + "-" + colIndex} >
-                    <TileContainer
+                    <TileController
                       piece={cell}
                       x={colIndex}
                       y={rowIndex}
-                      turn={turn}
                       handleDragStart={handleDragStart}
                       handleDrop={handleDrop}
                       handleDragEnd={handleDragEnd}
@@ -107,9 +106,7 @@ export const GameBoardController: React.FC = () => {
             ))
           }
         </div>
-        <BannerController />
       </div>
-      <ResetButton />
     </>
   );
 };

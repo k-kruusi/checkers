@@ -1,5 +1,5 @@
 import {
-  BoardState, Coord, GamePhase, Outcome, Piece, TileData, initialState
+  BoardState, Coord, GamePhase, Outcome, Piece, PlayerType, TileData, initialState
 } from '../../schema';
 import {
   calculatePotentialMoves, checkForWinner, cloneState, collectEliminations,
@@ -13,11 +13,13 @@ describe('cloneState function', () => {
     board: [[Piece.Black, Piece.Empty], [Piece.Empty, Piece.Red]],
     turn: { phase: GamePhase.Black, count: 0 },
     winner: null,
-    moveHistory: [],
-    start: new Date(),
-    end: null,
+    transformations: [],
     lock: null,
     message: null,
+    players: [
+      { type: PlayerType.LocalInput, color: Piece.Black },
+      { type: PlayerType.Computer, color: Piece.Red }
+    ]
   };
 
   it('should return a deep clone of the state', () => {
@@ -30,9 +32,7 @@ describe('cloneState function', () => {
     expect(clonedState.board).toEqual(testState.board);
     expect(clonedState.turn).toEqual(testState.turn);
     expect(clonedState.winner).toEqual(testState.winner);
-    expect(clonedState.moveHistory).toEqual(testState.moveHistory);
-    expect(clonedState.start).toEqual(testState.start);
-    expect(clonedState.end).toEqual(testState.end);
+    expect(clonedState.transformations).toEqual(testState.transformations);
     expect(clonedState.lock).toEqual(testState.lock);
     expect(clonedState.message).toEqual(testState.message);
 
@@ -48,9 +48,7 @@ describe('cloneState function', () => {
     expect(clonedState.board).toEqual(initialState.board);
     expect(clonedState.turn).toEqual(initialState.turn);
     expect(clonedState.winner).toEqual(initialState.winner);
-    expect(clonedState.moveHistory).toEqual(initialState.moveHistory);
-    expect(clonedState.start).toEqual(initialState.start);
-    expect(clonedState.end).toEqual(initialState.end);
+    expect(clonedState.transformations).toEqual(initialState.transformations);
     expect(clonedState.lock).toEqual(initialState.lock);
     expect(clonedState.message).toEqual(initialState.message);
   });

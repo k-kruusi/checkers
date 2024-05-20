@@ -15,6 +15,7 @@ describe('validateMovePieceAction', () => {
       piece: Piece.Black,
       potentials: [],
       result: MoveResult.Shift,
+      timestamp: "",
     };
 
     const result = validateMovePieceAction(state, action);
@@ -44,6 +45,7 @@ describe('validateMovePieceAction', () => {
       piece: Piece.Black,
       potentials: [],
       result: MoveResult.Shift,
+      timestamp: ""
     };
 
     const result = validateMovePieceAction(state, action);
@@ -65,6 +67,7 @@ describe('validateMovePieceAction', () => {
         backDirection: { x: 1, y: -1 }
       }],
       result: MoveResult.Shift,
+      timestamp: ""
     };
 
     const result = validateMovePieceAction(state, action);
@@ -86,6 +89,7 @@ describe('validateMovePieceAction', () => {
         backDirection: { x: 1, y: -1 }
       }],
       result: MoveResult.Shift,
+      timestamp: ""
     };
 
     const result = validateMovePieceAction(state, action);

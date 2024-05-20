@@ -5,37 +5,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #282c34;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-button,
-input[type="button"],
-input[type="reset"],
-input[type="submit"] {
-  /* Remove default styles */
-  appearance: none;
-  /* Remove default appearance */
-  -webkit-appearance: none;
-  /* For Safari */
-  -moz-appearance: none;
-  /* For Firefox */
-
-  /* Remove default borders, padding, and margins */
-  border: none;
-  padding: 0;
-  margin: 0;
-
-  /* Remove default background and text color */
-  background: none;
-  color: inherit;
-
-  /* Remove default font settings */
-  font: inherit;
-
-  /* Remove default cursor */
-  cursor: pointer;
 }

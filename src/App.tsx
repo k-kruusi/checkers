@@ -1,16 +1,19 @@
 import './App.css';
-import { CheckersProvider } from './providers';
+import { CheckersProvider, ComputerPlayerProvider } from './providers';
 import { GameBoardController } from './components';
 import { NextMoveInspectorProvider } from './providers';
-import { StateExplorer } from './components/StateExplorer';
+import { MetadataController } from './components';
 
 function App() {
   return (
     <div className="App">
       <CheckersProvider>
         <NextMoveInspectorProvider>
-          <GameBoardController />
-          <StateExplorer />
+          <ComputerPlayerProvider>
+            <MetadataController>
+              <GameBoardController />
+            </MetadataController>
+          </ComputerPlayerProvider>
         </NextMoveInspectorProvider>
       </CheckersProvider>
     </div>
