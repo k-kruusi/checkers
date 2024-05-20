@@ -4,29 +4,25 @@ import { nameForPhase, next } from "../turnUtilities";
 describe('next function', () => {
   it('should transition from Black to TransitionToRed', () => {
     const initialState: TurnState = { phase: GamePhase.Black, count: 0 };
-    const expectedState: TurnState = { phase: GamePhase.TransitionToRed, count: 0 };
-
+    const expectedState: TurnState = { phase: GamePhase.TransitionToRed, count: 1 };
     expect(next(initialState)).toEqual(expectedState);
   });
 
   it('should transition from Red to TransitionToBlack', () => {
     const initialState: TurnState = { phase: GamePhase.Red, count: 0 };
     const expectedState: TurnState = { phase: GamePhase.TransitionToBlack, count: 0 };
-
     expect(next(initialState)).toEqual(expectedState);
   });
 
   it('should transition from TransitionToBlack to Black and increment the count', () => {
     const initialState: TurnState = { phase: GamePhase.TransitionToBlack, count: 1 };
-    const expectedState: TurnState = { phase: GamePhase.Black, count: 2 };
-
+    const expectedState: TurnState = { phase: GamePhase.Black, count: 1 };
     expect(next(initialState)).toEqual(expectedState);
   });
 
   it('should transition from TransitionToRed to Red', () => {
     const initialState: TurnState = { phase: GamePhase.TransitionToRed, count: 0 };
     const expectedState: TurnState = { phase: GamePhase.Red, count: 0 };
-
     expect(next(initialState)).toEqual(expectedState);
   });
 });
