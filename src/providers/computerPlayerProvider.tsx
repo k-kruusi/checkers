@@ -86,7 +86,11 @@ export const ComputerPlayerProvider: React.FC<{ children: ReactNode }> = ({ chil
       result: selection.move.didJump ? MoveResult.Jump : MoveResult.Shift,
       timestamp: new Date().toISOString(),
     });
-  }, [turn.phase, players, pickMove]);
+  }, [
+    turn.phase, players, pickMove,
+    dispatch, lastTurn, setLastTurn,
+    turn.count, winner
+  ]);
 
   return (
     <ComputerPlayerContext.Provider value={{ pickMove }}>
