@@ -30,6 +30,13 @@ input[type="submit"] {
   cursor: pointer;
 }
 
+h1 {
+  all: unset;
+  /* Resets all properties to their inherited or initial values */
+  display: block;
+  /* Ensures the element retains its block display */
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;

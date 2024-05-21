@@ -1,14 +1,14 @@
 import { render } from '@testing-library/react';
 import { CheckersProvider, NextMoveInspectorProvider } from '../../../providers';
-import { MetadataController } from '../MetadataController';
+import { LayoutSelector } from '../LayoutSelector';
 
-describe('MetadataController', () => {
+describe('LayoutSelector', () => {
   it('matches the snapshot', () => {
     const { asFragment } = render(<CheckersProvider>
       <NextMoveInspectorProvider>
-        <MetadataController>
+        <LayoutSelector>
           <div>gameboard</div>
-        </MetadataController>
+        </LayoutSelector>
       </NextMoveInspectorProvider>
     </CheckersProvider>);
 

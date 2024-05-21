@@ -2,7 +2,7 @@ import './App.css';
 import { CheckersProvider, ComputerPlayerProvider } from './providers';
 import { GameBoardController } from './components';
 import { NextMoveInspectorProvider } from './providers';
-import { MetadataController } from './components';
+import { LayoutSelector } from './components';
 
 function App() {
   return (
@@ -10,9 +10,9 @@ function App() {
       <CheckersProvider>
         <NextMoveInspectorProvider>
           <ComputerPlayerProvider>
-            <MetadataController>
+            <LayoutSelector>
               <GameBoardController />
-            </MetadataController>
+            </LayoutSelector>
           </ComputerPlayerProvider>
         </NextMoveInspectorProvider>
       </CheckersProvider>

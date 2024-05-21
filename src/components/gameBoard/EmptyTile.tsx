@@ -3,10 +3,7 @@ import { useLayout } from '../../hooks';
 import { Coord, TileData } from '../../schema';
 import { theme } from '../../theme';
 
-const tileStyle = {
-  width: theme.size.tileSize,
-  height: theme.size.tileSize,
-};
+
 
 // empty tile that can receives drop events.
 export const EmptyTile = ({ tile, isDragging, onDropTile, onMouseOver }: {
@@ -15,19 +12,23 @@ export const EmptyTile = ({ tile, isDragging, onDropTile, onMouseOver }: {
   onDropTile: (from: Coord, to: Coord) => void;
   onMouseOver: () => void;
 }) => {
-  const isThin = useLayout();
+  const { isConstrainedWidth: isThin, isMobile, isLandscape } = useLayout();
 
   const style = useMemo(() => {
-    let s: React.CSSProperties = tileStyle;
-    if (isThin) {
-      s = {
-        ...tileStyle,
-        width: theme.size.tileSizeMobile,
-        height: theme.size.tileSizeMobile
-      };
-    }
+    const s = {
+      width: isMobile && isLandscape ?
+        theme.size.tileSizeMobile :
+        isThin ?
+          theme.size.tileSizeMedium :
+          theme.size.tileSize,
+      height: isMobile && isLandscape ?
+        theme.size.tileSizeMobile :
+        isThin ?
+          theme.size.tileSizeMedium :
+          theme.size.tileSize,
+    };
     return s;
-  }, [isThin]);
+  }, [isThin, isMobile, isLandscape]);
 
   const handleDropTile = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();

@@ -1,11 +1,11 @@
 import { ReactNode } from 'react';
-import { PieceCount } from '../../schema';
-import { InfoGraphic } from './Infographic';
+import { Piece } from '../../schema';
+import { InfoGraphic } from '../Infographic';
 import { BannerController } from '../banner/BannerController';
 import { ResetButton } from '../ResetButton';
 import { AIToggle } from '../AIToggle';
 import { Title } from '../Title';
-import { getString } from '../../utils';
+
 
 const horizontalStyles: React.CSSProperties = {
   position: 'relative',
@@ -13,7 +13,6 @@ const horizontalStyles: React.CSSProperties = {
   flexDirection: 'row',
   justifyContent: 'center',
   alignItems: 'center',
-  padding: '1vw',
 };
 
 const mainContent: React.CSSProperties = {
@@ -29,28 +28,22 @@ const buttonContainer: React.CSSProperties = {
   gap: 10
 };
 
-export const HorizontalLayout = ({ children, blackTime, redTime, count, isBlackTurn }: {
-  children: ReactNode,
-  blackTime: string,
-  redTime: string;
-  count: PieceCount,
-  isBlackTurn: boolean
-}) => {
+export const HorizontalLayout = ({ children }: { children: ReactNode }) => {
 
   return (
     <>
       <Title />
       <div style={horizontalStyles} >
-        <InfoGraphic name={getString("black")} time={blackTime} count={count.black} myTurn={isBlackTurn} />
+        <InfoGraphic piece={Piece.Black} />
         <div style={mainContent}>
           {children}
-          <BannerController />
+          <BannerController top="2%" />
           <div style={buttonContainer}>
             <ResetButton />
             <AIToggle />
           </div>
         </div>
-        <InfoGraphic name={getString("red")} time={redTime} count={count.red} myTurn={!isBlackTurn} />
+        <InfoGraphic piece={Piece.Red} />
       </div>
     </>
   );

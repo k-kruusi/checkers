@@ -1,9 +1,10 @@
 import { render } from '@testing-library/react';
-import { InfoGraphic } from '../Infographic';
+import { InfoGraphic } from '../../Infographic';
+import { Piece } from '../../../schema';
 
 test('InfoGraphic component snapshot', () => {
   const { asFragment } = render(
-    <InfoGraphic name="Test Name" time="10:00" count={5} myTurn={true} />
+    <InfoGraphic piece={Piece.Black} />
   );
   expect(asFragment()).toMatchSnapshot();
 });

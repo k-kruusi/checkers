@@ -8,11 +8,12 @@ export const theme = {
     green: 'green',
     blue: '#3399ff',
     blackBanner: 'rgba(34, 34, 34, 0.8)',
-    redBanner: 'rgba(231, 76, 60, 0.8)',
+    redBanner: 'rgba(211, 76, 60, 0.8)',
   },
   size: {
     tileSize: 'calc(100vw * 0.0455)',
-    tileSizeMobile: 'calc(100vw * 0.08)',
+    tileSizeMedium: 'calc(100vw * 0.08)',
+    tileSizeMobile: 'calc(100vw * 0.04)',
   },
   fonts: {
     amatic: 'Amatic SC, sans-serif',

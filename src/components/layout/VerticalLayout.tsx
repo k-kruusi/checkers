@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 import { BannerController } from '../banner/BannerController';
-import { InfoGraphic } from './Infographic';
+import { InfoGraphic } from '../Infographic';
 import { ResetButton } from '../ResetButton';
 import { AIToggle } from '../AIToggle';
-import { PieceCount } from '../../schema';
+import { Piece } from '../../schema';
 import { Title } from '../Title';
 
 const verticalStyles: React.CSSProperties = {
@@ -24,17 +24,14 @@ const bottomContainer: React.CSSProperties = {
 };
 
 const buttonsContainer: React.CSSProperties = {
+  position: 'relative',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between'
 };
 
-export const VerticalLayout = ({ children, blackTime, redTime, count, isBlackTurn }: {
+export const VerticalLayout = ({ children }: {
   children: ReactNode,
-  blackTime: string,
-  redTime: string;
-  count: PieceCount,
-  isBlackTurn: boolean
 }) => {
 
   return (
@@ -42,15 +39,15 @@ export const VerticalLayout = ({ children, blackTime, redTime, count, isBlackTur
       <Title />
       <div style={mainContent}>
         {children}
-        <BannerController />
       </div>
       <div style={bottomContainer}>
-        <InfoGraphic name="Black" time={blackTime} count={count.black} myTurn={isBlackTurn} />
+        <InfoGraphic piece={Piece.Black} />
         <div style={buttonsContainer}>
           <ResetButton />
+          <BannerController top="50%" />
           <AIToggle />
         </div>
-        <InfoGraphic name="Red" time={redTime} count={count.red} myTurn={!isBlackTurn} />
+        <InfoGraphic piece={Piece.Red} />
       </div>
     </div>
   );

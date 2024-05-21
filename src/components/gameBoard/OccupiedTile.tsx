@@ -26,14 +26,14 @@ export const OccupiedTile: React.FC<OccupiedTileProps> = ({
 }) => {
   const { state } = useCheckers();
   const { winner } = state;
-  const isThin = useLayout();
+  const { isConstrainedWidth: isThin, isMobile, isLandscape } = useLayout();
   const shouldFade = isDragging && isDragging.x === coord.x && isDragging.y === coord.y;
   const content = isKing(piece) ? <PiecesIcon /> : <></>;
 
   const style: React.CSSProperties = useMemo(() => {
     return {
-      width: isThin ? theme.size.tileSizeMobile : theme.size.tileSize,
-      height: isThin ? theme.size.tileSizeMobile : theme.size.tileSize,
+      width: isMobile && isLandscape ? theme.size.tileSizeMobile : isThin ? theme.size.tileSizeMedium : theme.size.tileSize,
+      height: isMobile && isLandscape ? theme.size.tileSizeMobile : isThin ? theme.size.tileSizeMedium : theme.size.tileSize,
       backgroundColor: isBlack(piece) ? theme.colors.black : theme.colors.red,
       borderRadius: '50%',
       opacity: shouldFade ? 0.5 : 1,
@@ -43,7 +43,7 @@ export const OccupiedTile: React.FC<OccupiedTileProps> = ({
       fontWeight: 'bold',
       color: isBlack(piece) ? theme.colors.ivory : theme.colors.black,
     };
-  }, [isThin, piece, shouldFade]);
+  }, [isThin, piece, shouldFade, isMobile, isLandscape]);
 
   const handleDragStart = useCallback((e: React.DragEvent<HTMLDivElement>) => {
     if (isDragging || winner) {

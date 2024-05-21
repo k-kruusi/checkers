@@ -1,4 +1,4 @@
-import en from '../../public/locales/en/translation.json';
+import en from '../assets/locales/en/translation.json';
 
 export enum Locales {
   EN = 'en'

@@ -5,27 +5,29 @@ import { ActionType } from '../../reducer';
 import { theme } from '../../theme';
 import { getBannerBgColor, getString } from '../../utils';
 
-const bannerStyles: React.CSSProperties = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  padding: '20px 40px',
-  color: 'white',
-  fontSize: '2em',
-  textAlign: 'center',
-  borderRadius: '10px',
-  zIndex: 1000,
-  animation: 'fadeIn 1s ease-in',
-  userSelect: 'none',
-  fontFamily: theme.fonts.amatic,
-  fontWeight: 700,
-};
-
 // Controls the display of the banners 
-export const BannerController = () => {
+export const BannerController = ({ top }: { top: string }) => {
   const { state, dispatch } = useCheckers();
   const { turn, message } = state;
+
+  const bannerStyles: React.CSSProperties = useMemo(() => {
+    return {
+      position: 'absolute',
+      top: top,
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      padding: '20px 40px',
+      color: 'white',
+      fontSize: '2em',
+      textAlign: 'center',
+      borderRadius: '10px',
+      zIndex: 1000,
+      animation: 'fadeIn 1s ease-in',
+      userSelect: 'none',
+      fontFamily: theme.fonts.amatic,
+      fontWeight: 700,
+    };
+  }, [top]);
 
   const customBannerStyle = useMemo(() => {
     const bgColor = getBannerBgColor(turn.phase);

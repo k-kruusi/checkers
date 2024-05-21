@@ -20,7 +20,7 @@ const gameBoardContainerStyle: React.CSSProperties = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  margin: "0 20px 20px 20px",
+  margin: "20px 20px 20px 20px",
 };
 
 // Big picture manages the state of the board, passes appropriate methods to the tiles

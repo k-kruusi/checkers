@@ -5,11 +5,14 @@ import { getString } from '../utils';
 const titleStyle: React.CSSProperties = {
   textAlign: 'center',
   color: theme.colors.ivory,
-  textDecoration: 'underline',
-  fontSize: 24,
+  fontSize: '4em',
   fontFamily: theme.fonts.amatic,
 };
 
 export const Title = () => {
   return <div style={titleStyle}><h1>{getString("title")}</h1></div>
+}
+
+export const Birdseye = () => {
+  return <div style={titleStyle}><h1>Birdseye</h1></div>
 }
