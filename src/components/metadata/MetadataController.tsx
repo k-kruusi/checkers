@@ -5,6 +5,7 @@ import { formatTime, getPieces, isTurn } from "../../utils";
 import { VerticalLayout } from "./VerticalLayout";
 import { HorizontalLayout } from "./HorizontalLayout";
 
+// handles the timer logic, and board layout wrapping the info pannels and the board.
 export const MetadataController = ({ children }: { children?: ReactNode }) => {
   const [blackTime, setBlackTime] = useState<string>("0:00");
   const [redTime, setRedTime] = useState<string>("0:00");

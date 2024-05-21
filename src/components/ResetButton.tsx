@@ -2,6 +2,7 @@ import { useCheckers } from "../hooks";
 import { ActionType } from "../reducer";
 import "../theme/ButtonStyle.css";
 
+// resets the game
 export const ResetButton = () => {
   const { dispatch } = useCheckers();
 

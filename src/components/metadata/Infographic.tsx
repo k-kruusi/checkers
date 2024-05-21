@@ -27,7 +27,12 @@ const headerStyle: React.CSSProperties = {
   textAlign: 'center'
 };
 
-export const InfoGraphic = ({ name, time, count, myTurn }: { name: string, time: string, count: number, myTurn: boolean }) => {
+export const InfoGraphic = ({ name, time, count, myTurn }: {
+  name: string,
+  time: string,
+  count: number,
+  myTurn: boolean
+}) => {
 
   const innerContainer: React.CSSProperties = useMemo(() => {
     return {

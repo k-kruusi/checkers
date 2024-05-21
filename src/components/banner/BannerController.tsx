@@ -21,6 +21,7 @@ const bannerStyles: React.CSSProperties = {
   fontWeight: 700,
 };
 
+// Controls the display of the banners 
 export const BannerController = () => {
   const { state, dispatch } = useCheckers();
   const { turn, message } = state;

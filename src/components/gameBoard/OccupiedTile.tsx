@@ -14,6 +14,8 @@ export type OccupiedTileProps = {
   onMouseOver: () => void;
 };
 
+// a tile with a piece on it, can start the drags from these tiles.
+// hover over them to see potential moves.
 export const OccupiedTile: React.FC<OccupiedTileProps> = ({
   piece,
   coord,

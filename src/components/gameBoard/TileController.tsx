@@ -23,6 +23,7 @@ interface TileContainerProps {
   isDragging: Coord | null;
 };
 
+// controls the tile, not the peice aka, highlights, checkerboard pattern etc.
 export const TileController: React.FC<TileContainerProps> = ({
   piece,
   x,

@@ -6,9 +6,9 @@ import { theme } from "../../theme";
 const tileStyle = {
   width: theme.size.tileSize,
   height: theme.size.tileSize,
-  borderRadius: '50%',
 };
 
+// empty tile that can receives drop events.
 export const EmptyTile = ({ tile, isDragging, onDropTile, onMouseOver }: {
   tile: TileData,
   isDragging: Coord | null,

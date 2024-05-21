@@ -23,6 +23,7 @@ const gameBoardContainerStyle: React.CSSProperties = {
   margin: "0 20px 20px 20px",
 };
 
+// Big picture manages the state of the board, passes appropriate methods to the tiles
 export const GameBoardController: React.FC = () => {
   const { state, dispatch } = useCheckers();
   const { board } = state;
