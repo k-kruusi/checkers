@@ -27,6 +27,8 @@ I used synthetic drag-and-drop events for tile movement, which allowed me to red
 
 The most interesting part for me was the logic to deduce possible moves—chaining jumps, or having a user perform one of the jumps and miss the larger chain, thereby ending their turn or not. I considered integrating a request to ChatGPT to have it play, but the end result of my simple random-based player actually turned out pretty well and allowed me to write some interesting code. 
 
+Testing wise, theres tests for all the utility functions; and the moveAction. Snapshot tests for most of the UI components.
+
 Thank you for your consideration.
 
 Best regards,
