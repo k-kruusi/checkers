@@ -1,7 +1,7 @@
-import { createContext, useState } from "react";
-import { Outcome, Piece, TileData } from "../schema";
+import { createContext, useState } from 'react';
+import { Outcome, Piece, TileData } from '../schema';
 import { useCheckers } from '../hooks';
-import { calculatePotentialMoves } from "../utils";
+import { calculatePotentialMoves } from '../utils';
 
 export const NextMoveInspectorContext = createContext<{
   inspect: (maybe: TileData) => void;
@@ -36,7 +36,7 @@ export const NextMoveInspectorProvider: React.FC<{ children: React.ReactNode }> 
       setPotentials(moves);
       setFocus(fresh);
     } catch (e) {
-      console.error("error calculating potential moves", e);
+      console.error('error calculating potential moves', e);
     }
   };
 
@@ -44,7 +44,7 @@ export const NextMoveInspectorProvider: React.FC<{ children: React.ReactNode }> 
     try {
       return calculatePotentialMoves(state.board, fresh.coord);
     } catch (e) {
-      console.error("error inspecting possible moves");
+      console.error('error inspecting possible moves');
       return [];
     }
   }

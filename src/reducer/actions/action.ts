@@ -1,9 +1,9 @@
-import { MovePieceAction } from "./moveAction";
-import { ResetGameAction } from "./resetGameAction";
-import { BannerTransitionAction } from "./bannerTransitionAction";
-import { ClearMessageAction } from "./clearMessageAction";
-import { ForfeitAction } from "./forfeitAction";
-import { ToggleAIAction } from "./toggleAIAction";
+import { MovePieceAction } from './moveAction';
+import { ResetGameAction } from './resetGameAction';
+import { BannerTransitionAction } from './bannerTransitionAction';
+import { ClearMessageAction } from './clearMessageAction';
+import { ForfeitAction } from './forfeitAction';
+import { ToggleAIAction } from './toggleAIAction';
 
 export enum ActionType {
   BANNER_TRANSITION,

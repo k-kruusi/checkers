@@ -1,4 +1,5 @@
-import { TurnState, GamePhase, Piece, Player, PlayerType } from "../schema";
+import { TurnState, GamePhase, Piece, Player, PlayerType } from '../schema';
+import { theme } from '../theme';
 
 export function next(turnState: TurnState) {
   switch (turnState.phase) {
@@ -69,5 +70,16 @@ export function isComputerTurn(phase: GamePhase, players: Player[]) {
       return computer.color === Piece.Red;
     default:
       return false;
+  }
+}
+
+export function getBannerBgColor(phase: GamePhase) {
+  switch (phase) {
+    case GamePhase.Black:
+    case GamePhase.TransitionToBlack:
+      return theme.colors.blackBanner;
+    case GamePhase.Red:
+    case GamePhase.TransitionToRed:
+      return theme.colors.redBanner;
   }
 }

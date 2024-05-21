@@ -1,6 +1,6 @@
-import { BoardState, Piece } from "../../schema";
-import { nameForTile } from "../../utils";
-import { ActionType } from "./action";
+import { BoardState, Piece } from '../../schema';
+import { nameForTile } from '../../utils';
+import { ActionType } from './action';
 
 export interface ForfeitAction {
   type: ActionType.FORFEIT;

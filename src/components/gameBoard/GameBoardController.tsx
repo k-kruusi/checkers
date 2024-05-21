@@ -90,7 +90,7 @@ export const GameBoardController: React.FC = () => {
             board.map((row, rowIndex) => (
               row.map((cell, colIndex) => {
                 return (
-                  <div key={rowIndex + "-" + colIndex} >
+                  <div key={rowIndex + '-' + colIndex} >
                     <TileController
                       piece={cell}
                       x={colIndex}

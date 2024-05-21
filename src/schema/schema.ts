@@ -1,5 +1,5 @@
-import { Action } from "../reducer";
-import { GamePhase, Piece, Player, PlayerType, TileData, TurnState } from "./types";
+import { Action } from '../reducer';
+import { GamePhase, Piece, Player, PlayerType, TileData, TurnState } from './types';
 
 export interface BoardState {
   board: Piece[][];

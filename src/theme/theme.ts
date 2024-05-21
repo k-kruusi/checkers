@@ -1,6 +1,3 @@
-import { GamePhase } from "../schema";
-
-
 export const theme = {
   colors: {
     grey: '#464646',
@@ -19,17 +16,6 @@ export const theme = {
   },
   fonts: {
     amatic: 'Amatic SC, sans-serif',
-  }
-}
-
-export function getBannerBgColor(phase: GamePhase) {
-  switch (phase) {
-    case GamePhase.Black:
-    case GamePhase.TransitionToBlack:
-      return theme.colors.blackBanner;
-    case GamePhase.Red:
-    case GamePhase.TransitionToRed:
-      return theme.colors.redBanner;
   }
 }
 

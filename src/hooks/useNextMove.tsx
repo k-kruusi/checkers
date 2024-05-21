@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { NextMoveInspectorContext } from "../providers";
+import { NextMoveInspectorContext } from '../providers';
 
 export const useNextMove = () => {
   const context = useContext(NextMoveInspectorContext);

@@ -1,4 +1,4 @@
-import { theme } from "../theme"
+import { theme } from '../theme';
 import '../theme/fonts.css';
 
 const titleStyle: React.CSSProperties = {
@@ -6,8 +6,9 @@ const titleStyle: React.CSSProperties = {
   color: theme.colors.ivory,
   textDecoration: 'underline',
   fontSize: 24,
+  fontFamily: theme.fonts.amatic,
 };
 
 export const Title = () => {
-  return <div className="amatic-sc-regular" style={titleStyle}><h1>Checkers</h1></div>
+  return <div style={titleStyle}><h1>Checkers</h1></div>
 }

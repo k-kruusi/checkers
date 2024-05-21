@@ -1,7 +1,7 @@
-import { BoardState, Coord, Outcome, MoveResult, Piece, TileData } from "../../schema";
-import { checkForWinner, isBlack, isJumpPossible, reducePhase, updateBoard, wasLastMove } from "../../utils";
-import { next } from "../../utils";
-import { ActionType } from "./action";
+import { BoardState, Coord, Outcome, MoveResult, Piece, TileData } from '../../schema';
+import { checkForWinner, isBlack, isJumpPossible, reducePhase, updateBoard, wasLastMove } from '../../utils';
+import { next } from '../../utils';
+import { ActionType } from './action';
 
 export interface MovePieceAction {
   type: ActionType.MOVE_PIECE;
@@ -35,7 +35,7 @@ export const handleMovePieceAction = (state: BoardState, action: MovePieceAction
       turn,
       moveHistory: [...transformations, action],
       lock: { piece: Piece.Empty, coord: { x: -1, y: -1 } },
-      message: `${isBlack(winner) ? "Black" : "Red"} Wins!`
+      message: `${isBlack(winner) ? 'Black' : 'Red'} Wins!`
     } as BoardState;
   }
 
@@ -76,7 +76,7 @@ export function validateMovePieceAction(state: BoardState, action: MovePieceActi
       return { message: 'A jump is possible, find it.' };
     }
   } catch (e) {
-    console.error("Error attempting to check if a jump is possible.", e);
+    console.error('Error attempting to check if a jump is possible.', e);
   }
 
   // validate step (move should be one of the valid ones for this piece potentials);

@@ -1,10 +1,10 @@
-import { ReactNode } from "react";
-import { BannerController } from "../banner/BannerController";
-import { InfoGraphic } from "./Infographic";
-import { ResetButton } from "../ResetButton";
-import { AIToggle } from "../AIToggle";
-import { PieceCount } from "../../schema";
-import { Title } from "../Title";
+import { ReactNode } from 'react';
+import { BannerController } from '../banner/BannerController';
+import { InfoGraphic } from './Infographic';
+import { ResetButton } from '../ResetButton';
+import { AIToggle } from '../AIToggle';
+import { PieceCount } from '../../schema';
+import { Title } from '../Title';
 
 const verticalStyles: React.CSSProperties = {
   display: 'flex',
@@ -24,7 +24,7 @@ const bottomContainer: React.CSSProperties = {
 };
 
 const buttonsContainer: React.CSSProperties = {
-  display: "flex",
+  display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between'
 };

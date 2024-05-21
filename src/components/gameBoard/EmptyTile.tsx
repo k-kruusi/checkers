@@ -1,7 +1,7 @@
-import { useMemo } from "react";
-import { useLayout } from "../../hooks";
-import { Coord, TileData } from "../../schema";
-import { theme } from "../../theme";
+import { useMemo } from 'react';
+import { useLayout } from '../../hooks';
+import { Coord, TileData } from '../../schema';
+import { theme } from '../../theme';
 
 const tileStyle = {
   width: theme.size.tileSize,

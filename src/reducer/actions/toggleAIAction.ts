@@ -1,5 +1,5 @@
-import { BoardState, Piece, PlayerType } from "../../schema";
-import { ActionType } from "./action";
+import { BoardState, Piece, PlayerType } from '../../schema';
+import { ActionType } from './action';
 
 export interface ToggleAIAction {
   type: ActionType.TOGGLE_AI;
@@ -13,7 +13,7 @@ export function handleToggleAIAction(state: BoardState, action: ToggleAIAction) 
   if (!aiPlayer) {
     const redPlayer = state.players.find((p) => p.color === Piece.Red);
     if (!redPlayer) {
-      console.error("no red player, should never happen");
+      console.error('no red player, should never happen');
       return state;
     }
     const red = { ...redPlayer, type: PlayerType.Computer }

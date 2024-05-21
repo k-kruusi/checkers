@@ -1,6 +1,6 @@
-import { BoardState, GamePhase } from "../../schema";
-import { next } from "../../utils";
-import { ActionType } from "./action";
+import { BoardState, GamePhase } from '../../schema';
+import { next } from '../../utils';
+import { ActionType } from './action';
 
 export interface BannerTransitionAction {
   type: ActionType.BANNER_TRANSITION;

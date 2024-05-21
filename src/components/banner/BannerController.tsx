@@ -1,22 +1,23 @@
-import { useCallback, useEffect, useMemo } from "react";
-import { useCheckers } from "../../hooks";
-import { GamePhase } from "../../schema";
-import { ActionType } from "../../reducer";
-import { getBannerBgColor, theme } from "../../theme";
+import { useCallback, useEffect, useMemo } from 'react';
+import { useCheckers } from '../../hooks';
+import { GamePhase } from '../../schema';
+import { ActionType } from '../../reducer';
+import { theme } from '../../theme';
+import { getBannerBgColor } from '../../utils';
 
 const bannerStyles: React.CSSProperties = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  padding: "20px 40px",
-  color: "white",
-  fontSize: "2em",
-  textAlign: "center",
-  borderRadius: "10px",
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  padding: '20px 40px',
+  color: 'white',
+  fontSize: '2em',
+  textAlign: 'center',
+  borderRadius: '10px',
   zIndex: 1000,
-  animation: "fadeIn 1s ease-in",
-  userSelect: "none",
+  animation: 'fadeIn 1s ease-in',
+  userSelect: 'none',
   fontFamily: theme.fonts.amatic,
   fontWeight: 700,
 };
@@ -67,10 +68,10 @@ export const BannerController = () => {
 
 const getBannerContent = (phase: GamePhase, message: string | null) => {
   if (phase === GamePhase.TransitionToBlack) {
-    return "Black Turn";
+    return 'Black Turn';
   }
   if (phase === GamePhase.TransitionToRed) {
-    return "Red Turn";
+    return 'Red Turn';
   }
   if (message && (phase === GamePhase.Black || phase === GamePhase.Red)) {
     return message;

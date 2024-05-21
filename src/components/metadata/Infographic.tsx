@@ -1,8 +1,8 @@
-
-import { theme } from "../../theme";
+import { useMemo } from 'react';
 import { ReactComponent as TimeIcon } from '../../assets/icons/timer.svg';
 import { ReactComponent as PiecesIcon } from '../../assets/icons/pieces.svg';
-import { useMemo } from "react";
+import { theme } from '../../theme';
+
 
 const outterContainer: React.CSSProperties = {
   border: `4px solid ${theme.colors.gold}`,
@@ -38,7 +38,7 @@ export const InfoGraphic = ({ name, time, count, myTurn }: {
   const innerContainer: React.CSSProperties = useMemo(() => {
     return {
       margin: 5,
-      padding: "5px 10px",
+      padding: '5px 10px',
       backgroundColor: myTurn ? theme.colors.ivory : theme.colors.grey,
       fontWeight: 'bold',
       textAlign: 'left',

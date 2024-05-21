@@ -6,8 +6,8 @@ import {
   down,
   startDirection,
   GamePhase
-} from "../schema";
-import { theme } from "../theme";
+} from '../schema';
+import { theme } from '../theme';
 
 export function kingMe(piece: Piece) {
   switch (piece) {
@@ -114,14 +114,14 @@ export function colorForPiece(piece: Piece) {
 export function nameForTile(piece: Piece) {
   switch (piece) {
     case Piece.Empty:
-      return "empty";
+      return 'empty';
     case Piece.Black:
-      return "black";
+      return 'black';
     case Piece.BlackKing:
-      return "black-king";
+      return 'black-king';
     case Piece.Red:
-      return "red";
+      return 'red';
     case Piece.RedKing:
-      return "red-king";
+      return 'red-king';
   }
 }

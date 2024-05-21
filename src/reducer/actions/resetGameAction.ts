@@ -1,6 +1,6 @@
-import { BoardState } from "../../schema";
-import { cloneState } from "../../utils";
-import { ActionType } from "./action";
+import { BoardState } from '../../schema';
+import { cloneState } from '../../utils';
+import { ActionType } from './action';
 
 export interface ResetGameAction {
   type: ActionType.RESET_GAME;

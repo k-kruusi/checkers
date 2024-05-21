@@ -1,8 +1,8 @@
-import { useCallback, useMemo } from "react";
-import { useCheckers, useLayout } from "../../hooks";
-import { Coord, Piece } from "../../schema";
-import { theme } from "../../theme";
-import { isBlack, isKing } from "../../utils";
+import { useCallback, useMemo } from 'react';
+import { useCheckers, useLayout } from '../../hooks';
+import { Coord, Piece } from '../../schema';
+import { theme } from '../../theme';
+import { isBlack, isKing } from '../../utils';
 import { ReactComponent as PiecesIcon } from '../../assets/icons/pieces.svg';
 
 export type OccupiedTileProps = {

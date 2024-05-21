@@ -1,5 +1,5 @@
-import { BoardState } from "../../schema";
-import { ActionType } from "./action";
+import { BoardState } from '../../schema';
+import { ActionType } from './action';
 
 export interface ClearMessageAction {
   type: ActionType.CLEAR_MESSAGE;

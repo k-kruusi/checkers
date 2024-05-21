@@ -1,14 +1,14 @@
-import { ReactNode, useEffect, useState } from "react";
-import { useCheckers, useLayout } from "../../hooks";
-import { GamePhase, Piece } from "../../schema";
-import { formatTime, getPieces, isTurn } from "../../utils";
-import { VerticalLayout } from "./VerticalLayout";
-import { HorizontalLayout } from "./HorizontalLayout";
+import { ReactNode, useEffect, useState } from 'react';
+import { useCheckers, useLayout } from '../../hooks';
+import { GamePhase, Piece } from '../../schema';
+import { formatTime, getPieces, isTurn } from '../../utils';
+import { VerticalLayout } from './VerticalLayout';
+import { HorizontalLayout } from './HorizontalLayout';
 
 // handles the timer logic, and board layout wrapping the info pannels and the board.
 export const MetadataController = ({ children }: { children?: ReactNode }) => {
-  const [blackTime, setBlackTime] = useState<string>("0:00");
-  const [redTime, setRedTime] = useState<string>("0:00");
+  const [blackTime, setBlackTime] = useState<string>('0:00');
+  const [redTime, setRedTime] = useState<string>('0:00');
 
   const { blackTimer, redTimer, state } = useCheckers();
   const { turn, board, winner } = state;

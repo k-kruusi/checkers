@@ -1,10 +1,10 @@
-import { ReactNode } from "react";
-import { PieceCount } from "../../schema";
-import { InfoGraphic } from "./Infographic";
-import { BannerController } from "../banner/BannerController";
-import { ResetButton } from "../ResetButton";
-import { AIToggle } from "../AIToggle";
-import { Title } from "../Title";
+import { ReactNode } from 'react';
+import { PieceCount } from '../../schema';
+import { InfoGraphic } from './Infographic';
+import { BannerController } from '../banner/BannerController';
+import { ResetButton } from '../ResetButton';
+import { AIToggle } from '../AIToggle';
+import { Title } from '../Title';
 
 const horizontalStyles: React.CSSProperties = {
   position: 'relative',

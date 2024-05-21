@@ -1,7 +1,7 @@
-import { useCheckers } from "../hooks";
-import { ActionType } from "../reducer";
-import { PlayerType } from "../schema";
-import "../theme/ButtonStyle.css";
+import { useCheckers } from '../hooks';
+import { ActionType } from '../reducer';
+import { PlayerType } from '../schema';
+import '../theme/ButtonStyle.css';
 
 // simple button toggles ai on and off
 export const AIToggle = () => {

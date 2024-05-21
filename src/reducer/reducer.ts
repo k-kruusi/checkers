@@ -7,8 +7,8 @@ import {
   handleMovePieceAction,
   handleResetGameAction,
   handleToggleAIAction,
-} from "./actions";
-import { BoardState } from "../schema";
+} from './actions';
+import { BoardState } from '../schema';
 
 
 export function reducer(state: BoardState, action: Action): BoardState {
@@ -26,7 +26,7 @@ export function reducer(state: BoardState, action: Action): BoardState {
     case ActionType.TOGGLE_AI:
       return handleToggleAIAction(state, action);
     default:
-      console.warn("action not implemented in reducer");
+      console.warn('action not implemented in reducer');
       return state;
   }
 }

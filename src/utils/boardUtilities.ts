@@ -7,7 +7,7 @@ import {
   TileData,
   initialState,
   startDirection
-} from "../schema";
+} from '../schema';
 import {
   getDirectionFor,
   isBlack,
@@ -17,7 +17,7 @@ import {
   isOccupiedByOpponent,
   isRed,
   kingMe
-} from "./tileUtilities";
+} from './tileUtilities';
 
 
 export function cloneState(state?: BoardState) {
@@ -179,7 +179,7 @@ export function isJumpPossible(board: Piece[][], piece: Piece) {
     return allRedMoves.flat().filter((outcome) => outcome.didJump).length > 0;
   }
   else {
-    throw new Error("should not be able to move empty piece");
+    throw new Error('should not be able to move empty piece');
   }
 }
 
@@ -209,7 +209,7 @@ export function wasLastMove(newBoard: Piece[][], result: MoveResult, to: Coord) 
     const moreMovesAvailable = calculatePotentialMoves(newBoard, { x: to.x, y: to.y }).filter((item) => item.didJump).length;
     return moreMovesAvailable === 0;
   } catch (e) {
-    console.error("Error calculating potential moves", e);
+    console.error('Error calculating potential moves', e);
     return true;
   }
 }
