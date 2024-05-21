@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo } from "react";
 import { useCheckers } from "../../hooks";
 import { GamePhase } from "../../schema";
 import { ActionType } from "../../reducer";
-import { getBannerBgColor } from "../../theme";
+import { getBannerBgColor, theme } from "../../theme";
 
 const bannerStyles: React.CSSProperties = {
   position: "absolute",
@@ -17,6 +17,8 @@ const bannerStyles: React.CSSProperties = {
   zIndex: 1000,
   animation: "fadeIn 1s ease-in",
   userSelect: "none",
+  fontFamily: theme.fonts.amatic,
+  fontWeight: 700,
 };
 
 export const BannerController = () => {

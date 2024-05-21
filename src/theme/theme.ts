@@ -16,6 +16,9 @@ export const theme = {
   size: {
     tileSize: 'calc(100vw * 0.0455)',
     tileSizeMobile: 'calc(100vw * 0.08)',
+  },
+  fonts: {
+    amatic: 'Amatic SC, sans-serif',
   }
 }
 

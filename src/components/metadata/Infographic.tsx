@@ -10,6 +10,7 @@ const outterContainer: React.CSSProperties = {
   width: 'fit-content',
   minWidth: 85,
   userSelect: 'none',
+  fontFamily: theme.fonts.amatic,
 };
 
 const rowStyle: React.CSSProperties = {
@@ -38,7 +39,7 @@ export const InfoGraphic = ({ name, time, count, myTurn }: { name: string, time:
     };
   }, [myTurn]);
 
-  return (<div className="amatic-sc-regular" style={outterContainer}>
+  return (<div style={outterContainer}>
     <div style={innerContainer}>
       <div><h1 style={headerStyle}>{name}</h1></div>
       <div style={rowStyle}><TimeIcon /> <p>{time}</p></div>
