@@ -16,18 +16,15 @@ export interface MovePieceAction {
 export const handleMovePieceAction = (state: BoardState, action: MovePieceAction) => {
   const { from, to, result } = action;
   const { board, turn, transformations } = state;
-  const { message, myMove } = validateMovePieceAction(state, action);
 
-  // failed validation
+  const { message, myMove } = validateMovePieceAction(state, action);
   if (!myMove) {
     console.log(message);
     return { ...state, message } as BoardState;
   }
 
-  // update the board state
   const newBoard = updateBoard(board, from, to, myMove);
 
-  // check win conditions
   const winner = checkForWinner(newBoard);
   if (winner) {
 
@@ -42,31 +39,31 @@ export const handleMovePieceAction = (state: BoardState, action: MovePieceAction
     } as BoardState;
   }
 
-  // check if theres an additional move available before before swapping the turn over (with this piece)
+  // check if theres an additional move available before before swapping the turn over
   let isFinished = wasLastMove(newBoard, result, to)
 
   // if you do an incomplete move, a lock gets set, since your turn could continue, 
   // you must continue moving that tile.
-  const myTile: TileData = { piece: myMove.piece, coord: { x: to.x, y: to.y } };
+  const myTile: TileData | null = isFinished ? null : { piece: myMove.piece, coord: { x: to.x, y: to.y } };
   const nextTurn = next({ phase: reducePhase(turn.phase), count: turn.count });
   const newState: BoardState = {
     ...state,
     board: newBoard,
     turn: isFinished ? nextTurn : turn,
     transformations: [...transformations, action],
-    lock: isFinished ? null : myTile,
+    lock: myTile,
     message: null,
   };
 
-  // TODO: remove logging
-  console.log(newState);
+  // Note: this a good spot to log the state changes for debugging
+  // console.log(newState);
   return newState;
 };
 
 export function validateMovePieceAction(state: BoardState, action: MovePieceAction): { message?: string, myMove?: Outcome } {
   const { from, result, potentials, to, piece } = action;
   const { board } = state;
-  // checks for any outstanding locks.
+  // checks for any outstanding locks. reminder locks are moves that were started but not finished, aka a jump in a multiple jump chain.
   if (state.lock && (state.lock.coord.x !== from.x || state.lock.coord.y !== from.y)) {
     return { message: 'Keep going you have another jump with the peice you already moved.' };
   }
@@ -89,5 +86,3 @@ export function validateMovePieceAction(state: BoardState, action: MovePieceActi
   }
   return { myMove }
 }
-
-

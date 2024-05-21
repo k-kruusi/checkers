@@ -11,7 +11,7 @@ export function handleBannerTransition(state: BoardState, action: BannerTransiti
   // we check that the phase hasnt changed since making the request, before processing it.
   // since the caller is on a timer, we cant be certain is hasnt changed phases since it was started.
   if (state.turn.phase !== action.currentPhase) {
-    console.log('abort!');
+    console.log('phase change aborted!');
     return state;
   }
   return { ...state, turn: next(state.turn), transformations: [...state.transformations, action] };

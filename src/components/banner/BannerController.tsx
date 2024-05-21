@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { useCheckers } from "../../hooks";
 import { GamePhase } from "../../schema";
 import { ActionType } from "../../reducer";
@@ -17,46 +17,58 @@ const bannerStyles: React.CSSProperties = {
   zIndex: 1000,
   animation: "fadeIn 1s ease-in",
   userSelect: "none",
-}
+};
 
 export const BannerController = () => {
   const { state, dispatch } = useCheckers();
-  const { turn } = state;
+  const { turn, message } = state;
 
-  const bgColor = getBannerBgColor(turn.phase);
-  const customBannerStyle = {
-    ...bannerStyles, backgroundColor: bgColor
-  }
+  const customBannerStyle = useMemo(() => {
+    const bgColor = getBannerBgColor(turn.phase);
+    return {
+      ...bannerStyles, backgroundColor: bgColor
+    }
+  }, [turn.phase]);
+
+  const clearMessage = useCallback(() => {
+    dispatch({ type: ActionType.CLEAR_MESSAGE });
+  }, [dispatch]);
 
   useEffect(() => {
     if ((turn.phase === GamePhase.TransitionToBlack || turn.phase === GamePhase.TransitionToRed)) {
-      const timer = setTimeout(() => {
+      const transitionBanner = () => {
         dispatch({ type: ActionType.BANNER_TRANSITION, currentPhase: turn.phase });
-      }, 1200);
-
+      }
+      const timer = setTimeout(transitionBanner, 1200);
       return () => clearTimeout(timer);
     }
   }, [turn.phase, dispatch]);
 
   useEffect(() => {
     if (state.message) {
-      const timer = setTimeout(() => {
-        dispatch({ type: ActionType.CLEAR_MESSAGE });
-      }, 1200);
+      const timer = setTimeout(clearMessage, 1200);
       return () => clearTimeout(timer);
     }
-  }, [state.message, dispatch]);
+  }, [state.message, dispatch, clearMessage]);
 
-  if (turn.phase === GamePhase.TransitionToBlack) {
-    return (<div style={customBannerStyle}>Black Turn</div>);
+  const bannerContent = getBannerContent(turn.phase, message);
+  if (!bannerContent) {
+    return null;
   }
-  else if (turn.phase === GamePhase.TransitionToRed) {
-    return (<div style={customBannerStyle}>Red Turn</div>);
+
+  return (<div style={customBannerStyle}>{bannerContent}</div>);
+};
+
+
+const getBannerContent = (phase: GamePhase, message: string | null) => {
+  if (phase === GamePhase.TransitionToBlack) {
+    return "Black Turn";
   }
-  else if (state.message && (turn.phase === GamePhase.Black || turn.phase === GamePhase.Red)) {
-    return (<div style={customBannerStyle}>{state.message}</div>)
+  if (phase === GamePhase.TransitionToRed) {
+    return "Red Turn";
+  }
+  if (message && (phase === GamePhase.Black || phase === GamePhase.Red)) {
+    return message;
   }
   return null;
-}
-
-
+};

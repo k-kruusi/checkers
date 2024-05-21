@@ -5,6 +5,7 @@ export interface ToggleAIAction {
   type: ActionType.TOGGLE_AI;
 }
 
+// currently computer players are only toggled for the red player
 export function handleToggleAIAction(state: BoardState, action: ToggleAIAction) {
 
   const aiPlayer = state.players.find((p) => p.type === PlayerType.Computer);

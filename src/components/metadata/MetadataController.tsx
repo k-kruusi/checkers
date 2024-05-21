@@ -42,7 +42,7 @@ export const MetadataController = ({ children }: { children?: ReactNode }) => {
         redTimer.start();
         break;
     }
-  }, [turn.phase, turn.count, blackTimer, redTimer]);
+  }, [turn.phase, turn.count, blackTimer, redTimer, winner]);
 
   useEffect(() => {
     if (!winner) {
@@ -56,14 +56,14 @@ export const MetadataController = ({ children }: { children?: ReactNode }) => {
   }, [blackTimer, redTimer, setBlackTime, setRedTime, winner]);
 
   return isThin ?
-    <VerticalLayout
+    (<VerticalLayout
       blackTime={blackTime}
       redTime={redTime}
       count={count}
-      isBlackTurn={isBlackTurn}>{children}</VerticalLayout> :
-    <HorizontalLayout
+      isBlackTurn={isBlackTurn}>{children}</VerticalLayout>) :
+    (<HorizontalLayout
       blackTime={blackTime}
       redTime={redTime}
       count={count}
-      isBlackTurn={isBlackTurn}>{children}</HorizontalLayout>;
+      isBlackTurn={isBlackTurn}>{children}</HorizontalLayout>);
 }

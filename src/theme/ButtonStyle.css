@@ -2,8 +2,8 @@
 /* in a bigger project would definately want something like styled components or tailwind so wouldnt run into catch-22 choices here */
 
 .shared-button {
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 6px 12px;
+  font-size: 20px;
   font-weight: bold;
   border: none;
   cursor: pointer;
@@ -14,6 +14,10 @@
   transition: background-color 0.3s, #DAA520 0.3s, box-shadow 0.3s;
   width: fit-content;
   height: fit-content;
+  font-family: "Amatic SC", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+
 }
 
 .shared-button:hover {

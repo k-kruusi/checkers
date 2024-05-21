@@ -4,7 +4,7 @@ import { InfoGraphic } from "./Infographic";
 import { BannerController } from "../banner/BannerController";
 import { ResetButton } from "../ResetButton";
 import { AIToggle } from "../AIToggle";
-
+import { Title } from "../Title";
 
 const horizontalStyles: React.CSSProperties = {
   position: 'relative',
@@ -26,7 +26,7 @@ const buttonContainer: React.CSSProperties = {
   display: 'flex',
   flexDirection: 'row',
   gap: 10
-}
+};
 
 export const HorizontalLayout = ({ children, blackTime, redTime, count, isBlackTurn }: {
   children: ReactNode,
@@ -37,17 +37,20 @@ export const HorizontalLayout = ({ children, blackTime, redTime, count, isBlackT
 }) => {
 
   return (
-    <div style={horizontalStyles} >
-      <InfoGraphic name="Black" time={blackTime} count={count.black} myTurn={isBlackTurn} />
-      <div style={mainContent}>
-        {children}
-        <BannerController />
-        <div style={buttonContainer}>
-          <ResetButton />
-          <AIToggle />
+    <>
+      <Title />
+      <div style={horizontalStyles} >
+        <InfoGraphic name="Black" time={blackTime} count={count.black} myTurn={isBlackTurn} />
+        <div style={mainContent}>
+          {children}
+          <BannerController />
+          <div style={buttonContainer}>
+            <ResetButton />
+            <AIToggle />
+          </div>
         </div>
+        <InfoGraphic name="Red" time={redTime} count={count.red} myTurn={!isBlackTurn} />
       </div>
-      <InfoGraphic name="Red" time={redTime} count={count.red} myTurn={!isBlackTurn} />
-    </div>
+    </>
   );
-}
+};

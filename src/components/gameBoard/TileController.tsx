@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useCheckers } from '../../hooks';
-import { Piece, Coord, TileData } from '../../schema';
+import { Piece, Coord } from '../../schema';
 import { isComputerTurn, isTileActive } from '../../utils';
 import { EmptyTile } from './EmptyTile';
 import { OccupiedTile } from './OccupiedTile';
@@ -33,22 +33,24 @@ export const TileController: React.FC<TileContainerProps> = ({
   const isActive = isTileActive(turn.phase, piece);
   const tile = { piece: piece, coord: { x, y } };
 
-  const containerStyle: React.CSSProperties = {
-    backgroundColor: getTileColor(x, y),
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    cursor: 'pointer',
-    position: 'relative',
-    padding: 4
-  }
+  const containerStyle: React.CSSProperties = useMemo(() => {
+    return {
+      backgroundColor: getTileColor(x, y),
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      cursor: 'pointer',
+      position: 'relative',
+      padding: 4
+    };
+  }, [getTileColor, x, y]);
 
-  const handleMouseOver = () => {
+  const handleMouseOver = useCallback(() => {
     if (isCompTurn) {
       return;
     }
     isActive && handleHover(piece, { x, y });
-  }
+  }, [isCompTurn, isActive, piece, x, y, handleHover]);
 
   return (
     <div style={containerStyle}>

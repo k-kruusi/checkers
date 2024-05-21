@@ -1,4 +1,4 @@
-import { BoardState, initialState } from "../../schema";
+import { BoardState } from "../../schema";
 import { cloneState } from "../../utils";
 import { ActionType } from "./action";
 
@@ -7,5 +7,9 @@ export interface ResetGameAction {
 }
 
 export function handleResetGameAction(state: BoardState, _: ResetGameAction) {
-  return cloneState();
+
+  const players = state.players;
+  const fresh = cloneState();
+
+  return { ...fresh, players };
 }

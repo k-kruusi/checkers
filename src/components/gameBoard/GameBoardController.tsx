@@ -13,15 +13,15 @@ const gameBoardStyle: React.CSSProperties = {
   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
   borderRadius: 4,
   padding: 4,
-}
+};
 
 const gameBoardContainerStyle: React.CSSProperties = {
   position: 'relative',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  padding: 20
-}
+  margin: "0 20px 20px 20px",
+};
 
 export const GameBoardController: React.FC = () => {
   const { state, dispatch } = useCheckers();
@@ -47,9 +47,10 @@ export const GameBoardController: React.FC = () => {
       result: validMove.didJump ? MoveResult.Jump : MoveResult.Shift,
       timestamp: new Date().toISOString(),
     });
+
     setIsDragging(null);
     clear();
-  }, [potentials, dispatch]);
+  }, [potentials, board, dispatch, clear, setIsDragging]);
 
   const handleDragEnd = useCallback(() => {
     setIsDragging(null);

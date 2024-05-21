@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useLayout } from "../../hooks";
 import { Coord, TileData } from "../../schema";
 import { theme } from "../../theme";
@@ -6,7 +7,7 @@ const tileStyle = {
   width: theme.size.tileSize,
   height: theme.size.tileSize,
   borderRadius: '50%',
-}
+};
 
 export const EmptyTile = ({ tile, isDragging, onDropTile, onMouseOver }: {
   tile: TileData,
@@ -16,10 +17,17 @@ export const EmptyTile = ({ tile, isDragging, onDropTile, onMouseOver }: {
 }) => {
   const isThin = useLayout();
 
-  let style: React.CSSProperties = tileStyle;
-  if (isThin) {
-    style = { ...tileStyle, width: theme.size.tileSizeMobile, height: theme.size.tileSizeMobile };
-  }
+  const style = useMemo(() => {
+    let s: React.CSSProperties = tileStyle;
+    if (isThin) {
+      s = {
+        ...tileStyle,
+        width: theme.size.tileSizeMobile,
+        height: theme.size.tileSizeMobile
+      };
+    }
+    return s;
+  }, [isThin]);
 
   const handleDropTile = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -46,11 +54,11 @@ export const EmptyTile = ({ tile, isDragging, onDropTile, onMouseOver }: {
     }
   }
 
-  return <div
+  return (<div
     style={style}
     onDragOver={handleDragOver}
     onDrop={handleDropTile}
     onTouchEnd={handleTouchEnd}
     onMouseOver={onMouseOver}
-  />
-}
+  />);
+};
