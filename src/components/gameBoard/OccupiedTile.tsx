@@ -3,6 +3,7 @@ import { useCheckers, useLayout } from "../../hooks";
 import { Coord, Piece } from "../../schema";
 import { theme } from "../../theme";
 import { isBlack, isKing } from "../../utils";
+import { ReactComponent as PiecesIcon } from '../../assets/icons/pieces.svg';
 
 export type OccupiedTileProps = {
   piece: Piece;
@@ -25,7 +26,7 @@ export const OccupiedTile: React.FC<OccupiedTileProps> = ({
   const { winner } = state;
   const isThin = useLayout();
   const shouldFade = isDragging && isDragging.x === coord.x && isDragging.y === coord.y;
-  const content = isKing(piece) ? <p style={{ userSelect: 'none' }}>K</p> : <></>;
+  const content = isKing(piece) ? <PiecesIcon /> : <></>;
 
   const style: React.CSSProperties = useMemo(() => {
     return {

@@ -1,0 +1,614 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GameBoardController matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    style="position: relative; display: flex; justify-content: center; align-items: center; margin: 0px 20px 20px 20px;"
+  >
+    <div
+      style="display: grid; grid-template-columns: repeat(8, auto); gap: 0; border: 4px solid #daa520; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border-radius: 4px; padding: 4px;"
+    >
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            draggable="false"
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); background-color: rgb(231, 76, 60); border-radius: 50%; opacity: 1; display: flex; justify-content: center; align-items: center; font-weight: bold; color: rgb(34, 34, 34);"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            draggable="false"
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); background-color: rgb(231, 76, 60); border-radius: 50%; opacity: 1; display: flex; justify-content: center; align-items: center; font-weight: bold; color: rgb(34, 34, 34);"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            draggable="false"
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); background-color: rgb(231, 76, 60); border-radius: 50%; opacity: 1; display: flex; justify-content: center; align-items: center; font-weight: bold; color: rgb(34, 34, 34);"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            draggable="false"
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); background-color: rgb(231, 76, 60); border-radius: 50%; opacity: 1; display: flex; justify-content: center; align-items: center; font-weight: bold; color: rgb(34, 34, 34);"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            draggable="false"
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); background-color: rgb(231, 76, 60); border-radius: 50%; opacity: 1; display: flex; justify-content: center; align-items: center; font-weight: bold; color: rgb(34, 34, 34);"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            draggable="false"
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); background-color: rgb(231, 76, 60); border-radius: 50%; opacity: 1; display: flex; justify-content: center; align-items: center; font-weight: bold; color: rgb(34, 34, 34);"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            draggable="false"
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); background-color: rgb(231, 76, 60); border-radius: 50%; opacity: 1; display: flex; justify-content: center; align-items: center; font-weight: bold; color: rgb(34, 34, 34);"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            draggable="false"
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); background-color: rgb(231, 76, 60); border-radius: 50%; opacity: 1; display: flex; justify-content: center; align-items: center; font-weight: bold; color: rgb(34, 34, 34);"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            draggable="false"
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); background-color: rgb(231, 76, 60); border-radius: 50%; opacity: 1; display: flex; justify-content: center; align-items: center; font-weight: bold; color: rgb(34, 34, 34);"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            draggable="false"
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); background-color: rgb(231, 76, 60); border-radius: 50%; opacity: 1; display: flex; justify-content: center; align-items: center; font-weight: bold; color: rgb(34, 34, 34);"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            draggable="false"
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); background-color: rgb(231, 76, 60); border-radius: 50%; opacity: 1; display: flex; justify-content: center; align-items: center; font-weight: bold; color: rgb(34, 34, 34);"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            draggable="false"
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); background-color: rgb(231, 76, 60); border-radius: 50%; opacity: 1; display: flex; justify-content: center; align-items: center; font-weight: bold; color: rgb(34, 34, 34);"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            draggable="true"
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); background-color: rgb(34, 34, 34); border-radius: 50%; opacity: 1; display: flex; justify-content: center; align-items: center; font-weight: bold; color: rgb(255, 255, 240);"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            draggable="true"
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); background-color: rgb(34, 34, 34); border-radius: 50%; opacity: 1; display: flex; justify-content: center; align-items: center; font-weight: bold; color: rgb(255, 255, 240);"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            draggable="true"
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); background-color: rgb(34, 34, 34); border-radius: 50%; opacity: 1; display: flex; justify-content: center; align-items: center; font-weight: bold; color: rgb(255, 255, 240);"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            draggable="true"
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); background-color: rgb(34, 34, 34); border-radius: 50%; opacity: 1; display: flex; justify-content: center; align-items: center; font-weight: bold; color: rgb(255, 255, 240);"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            draggable="true"
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); background-color: rgb(34, 34, 34); border-radius: 50%; opacity: 1; display: flex; justify-content: center; align-items: center; font-weight: bold; color: rgb(255, 255, 240);"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            draggable="true"
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); background-color: rgb(34, 34, 34); border-radius: 50%; opacity: 1; display: flex; justify-content: center; align-items: center; font-weight: bold; color: rgb(255, 255, 240);"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            draggable="true"
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); background-color: rgb(34, 34, 34); border-radius: 50%; opacity: 1; display: flex; justify-content: center; align-items: center; font-weight: bold; color: rgb(255, 255, 240);"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            draggable="true"
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); background-color: rgb(34, 34, 34); border-radius: 50%; opacity: 1; display: flex; justify-content: center; align-items: center; font-weight: bold; color: rgb(255, 255, 240);"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            draggable="true"
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); background-color: rgb(34, 34, 34); border-radius: 50%; opacity: 1; display: flex; justify-content: center; align-items: center; font-weight: bold; color: rgb(255, 255, 240);"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            draggable="true"
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); background-color: rgb(34, 34, 34); border-radius: 50%; opacity: 1; display: flex; justify-content: center; align-items: center; font-weight: bold; color: rgb(255, 255, 240);"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            draggable="true"
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); background-color: rgb(34, 34, 34); border-radius: 50%; opacity: 1; display: flex; justify-content: center; align-items: center; font-weight: bold; color: rgb(255, 255, 240);"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(70, 70, 70); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            draggable="true"
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); background-color: rgb(34, 34, 34); border-radius: 50%; opacity: 1; display: flex; justify-content: center; align-items: center; font-weight: bold; color: rgb(255, 255, 240);"
+          />
+        </div>
+      </div>
+      <div>
+        <div
+          style="background-color: rgb(255, 255, 240); display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; padding: 4px;"
+        >
+          <div
+            style="width: calc(100vw * 0.0455); height: calc(100vw * 0.0455); border-radius: 50%;"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

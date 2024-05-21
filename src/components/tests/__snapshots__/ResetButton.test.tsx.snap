@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResetButton matches the snapshot 1`] = `
+<DocumentFragment>
+  <button
+    aria-label="reset"
+    class="shared-button"
+  >
+    RESET
+  </button>
+</DocumentFragment>
+`;

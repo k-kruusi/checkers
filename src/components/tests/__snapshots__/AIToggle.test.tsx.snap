@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AIToggle matches the snapshot 1`] = `
+<DocumentFragment>
+  <button
+    aria-label="ai-toggle"
+    class="shared-button"
+  >
+    AI On
+  </button>
+</DocumentFragment>
+`;

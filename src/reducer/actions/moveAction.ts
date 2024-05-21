@@ -73,7 +73,7 @@ export function validateMovePieceAction(state: BoardState, action: MovePieceActi
     // a jump possible cause it could be an invalid move.
     const isJumpAvailable = isJumpPossible(board, piece);
     if (result === MoveResult.Shift && isJumpAvailable) {
-      return { message: 'A jump is possible find it.' };
+      return { message: 'A jump is possible, find it.' };
     }
   } catch (e) {
     console.error("Error attempting to check if a jump is possible.", e);

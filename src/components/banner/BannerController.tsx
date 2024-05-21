@@ -36,6 +36,8 @@ export const BannerController = () => {
     dispatch({ type: ActionType.CLEAR_MESSAGE });
   }, [dispatch]);
 
+  // these two use effects could be combined into one, but it makes
+  // cleanup for the timers a bit awkward.
   useEffect(() => {
     if ((turn.phase === GamePhase.TransitionToBlack || turn.phase === GamePhase.TransitionToRed)) {
       const transitionBanner = () => {

@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Title matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="amatic-sc-regular"
+    style="text-align: center; color: rgb(255, 255, 240); text-decoration: underline; font-size: 24px;"
+  >
+    <h1>
+      Checkers
+    </h1>
+  </div>
+</DocumentFragment>
+`;

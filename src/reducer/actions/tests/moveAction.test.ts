@@ -49,7 +49,7 @@ describe('validateMovePieceAction', () => {
     };
 
     const result = validateMovePieceAction(state, action);
-    expect(result.message).toBe('A jump is possible find it.');
+    expect(result.message).toBe('A jump is possible, find it.');
   });
 
   it('should return a message if the move is not in the potentials', () => {

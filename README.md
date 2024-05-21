@@ -15,18 +15,21 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 To run the unit tests.
 
-
 ### Explainations
 
-I tried to build the entire thing with vanilla react with typescript as a bit of a challenge.
+I built the entire project using vanilla React with TypeScript as a challenge. The only package I added was for snapshot testing. 
 
-I used a reducer model for the game state and stored all the actions on it. If we were to host this or allow for multiplayer, we could sync the game state between clients by storing the transformations and players' paths. There is no need to store the entire state object; it can be deduced from the initial state plus the application of all the transformations. Most games run sub 80 actions.
+For the game state, I used a reducer model and stored all the actions on it. If we were to host this or enable multiplayer, we could sync the game state between clients by storing the transformations and players' paths. There's no need to store the entire state object; it can be deduced from the initial state and the application of all the transformations. Most games run with fewer than 80 actions.
 
-One of the trickiest parts was just using "standard" CSS. I'm very used to using styled components or Tailwind, and it didn't cause any issues, but it sort of broke my own rules for theming the buttons. I can explain more about this if there's any interest, but essentially, using the CSS hooks for :hover and :active is much easier to control the style of the buttons rather than swapping styles with React based on synthetic events.
+One of the trickiest parts was using standard CSS. I'm accustomed to using styled components or Tailwind, and while this didn't cause any issues, it broke my own rules for theming the buttons. I can explain more about this if there's interest, but essentially, using CSS hooks like :hover and :active is much easier for controlling the style of buttons compared to swapping styles with React based on synthetic events.
 
-The most interesting part of it for me was the logic to deduce possible moves; chaining the jumps, or having a user just do one of the jumps, missing the larger chain; but not ending their turn. I thought about actually hooking up a request to ChatGPT and having it play but the end result of my dumb random based player, actually turned out pretty good; and allowed me to write some interesting code.
+I used synthetic drag-and-drop events for tile movement, which allowed me to reduce the number of props passed around, since you can pass data with both drag and drop events. Initially, I found this very cool as it greatly reduced complexity. However, during testing, I discovered that it wasn't well supported by touch events in a way I liked, so I had to code separate controls for mobile. Given more time, I think I could improve the mobile controls.
 
-Cheers:
-  -Kevin
+The most interesting part for me was the logic to deduce possible moves—chaining jumps, or having a user perform one of the jumps and miss the larger chain, thereby ending their turn or not. I considered integrating a request to ChatGPT to have it play, but the end result of my simple random-based player actually turned out pretty well and allowed me to write some interesting code.
+
+Thank you for your consideration. I look forward to meeting everyone in person.
+
+Best regards,
+Kevin
 
 
