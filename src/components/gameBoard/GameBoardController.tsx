@@ -3,7 +3,7 @@ import { useCheckers, useNextMove } from '../../hooks';
 import { Coord, MoveResult, Piece } from '../../schema';
 import { theme } from '../../theme';
 import { ActionType } from '../../reducer';
-import { TileController } from './TileController';
+import { TileColor, TileController } from './TileController';
 
 const gameBoardStyle: React.CSSProperties = {
   display: 'grid',
@@ -65,7 +65,7 @@ export const GameBoardController: React.FC = () => {
     inspect({ piece, coord });
   }, [setIsDragging, inspect]);
 
-  const getTileColor = useCallback((x: number, y: number) => {
+  const getTileColor = useCallback((x: number, y: number): TileColor => {
     const isOddRow = y % 2 === 0 ? false : true;
     const isOddTile = x % 2 === 0 ? false : true;
     const defaultTileBackground = isOddRow ?
@@ -77,8 +77,8 @@ export const GameBoardController: React.FC = () => {
         theme.colors.grey;
 
     return potentials.some(p => p.coord.x === x && p.coord.y === y) ?
-      theme.colors.blue :
-      defaultTileBackground;
+      { color: defaultTileBackground, highlight: theme.colors.blue } :
+      { color: defaultTileBackground, highlight: null };
   }, [potentials]);
 
   return (

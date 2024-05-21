@@ -9,9 +9,9 @@ export const theme = {
     black: '#222222',
     red: '#e74c3c',
     green: 'green',
-    blue: 'blue',
-    blackBanner: 'rgba(0, 0, 0, 0.8)',
-    redBanner: 'rgba(255, 0, 0, 0.8)',
+    blue: '#3399ee',
+    blackBanner: 'rgba(34, 34, 34, 0.8)',
+    redBanner: 'rgba(231, 76, 60, 0.8)',
   },
   size: {
     tileSize: 'calc(100vw * 0.0455)',

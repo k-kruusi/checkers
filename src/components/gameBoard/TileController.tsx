@@ -4,6 +4,12 @@ import { Piece, Coord } from '../../schema';
 import { isComputerTurn, isTileActive } from '../../utils';
 import { EmptyTile } from './EmptyTile';
 import { OccupiedTile } from './OccupiedTile';
+import { theme } from '../../theme';
+
+export type TileColor = {
+  color: string;
+  highlight: string | null;
+};
 
 interface TileContainerProps {
   piece: Piece;
@@ -13,9 +19,9 @@ interface TileContainerProps {
   handleDragStart: (piece: Piece, coord: Coord) => void;
   handleDragEnd: () => void;
   handleHover: (piece: Piece, coord: Coord) => void;
-  getTileColor: (x: number, y: number) => string;
+  getTileColor: (x: number, y: number) => TileColor;
   isDragging: Coord | null;
-}
+};
 
 export const TileController: React.FC<TileContainerProps> = ({
   piece,
@@ -34,14 +40,16 @@ export const TileController: React.FC<TileContainerProps> = ({
   const tile = { piece: piece, coord: { x, y } };
 
   const containerStyle: React.CSSProperties = useMemo(() => {
+    const { color, highlight } = getTileColor(x, y);
     return {
-      backgroundColor: getTileColor(x, y),
+      backgroundColor: color,
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
       cursor: 'pointer',
       position: 'relative',
-      padding: 4
+      padding: 4,
+      boxShadow: highlight ? `inset 0 0 10px ${theme.colors.blue}` : ''
     };
   }, [getTileColor, x, y]);
 

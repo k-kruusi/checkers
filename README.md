@@ -23,11 +23,11 @@ For the game state, I used a reducer model and stored all the actions on it. If 
 
 One of the trickiest parts was using baked in react CSS. I'm accustomed to using styled components or Tailwind, and while this didn't cause any issues, it broke my own rules for theming the buttons. I can explain more about this if there's interest.
 
-I used synthetic drag-and-drop events for tile movement, which allowed me to reduce the number of props passed around, since you can pass data with both drag and drop events. Initially, I found this very cool as it greatly reduced complexity. However, during testing, I discovered that it wasn't well supported by touch events in a way I liked, so I had to code separate controls for mobile. Given more time, I think I could improve the mobile controls.
+I used synthetic drag-and-drop events for tile movement, which allowed me to reduce the number of props passed around, since you can pass data with both drag and drop events. Initially, I found this very cool as it greatly reduced complexity. However, during testing, I discovered that it wasn't well supported by touch events in a way I liked; and ended up passing more data because of it.
 
 The most interesting part for me was the logic to deduce possible moves—chaining jumps, or having a user perform one of the jumps and miss the larger chain, thereby ending their turn or not. I considered integrating a request to ChatGPT to have it play, but the end result of my simple random-based player actually turned out pretty well and allowed me to write some interesting code. 
 
-Testing wise, theres tests for all the utility functions; and the moveAction. Snapshot tests for most of the UI components.
+Testing wise, theres tests for all the utility functions; and the moveAction. Snapshot tests for most of the UI components. I tested with Edge, Firefox, and Chrome. No Safari, Im on a PC right now; but im used to working on mac.
 
 Thank you for your consideration.
 
