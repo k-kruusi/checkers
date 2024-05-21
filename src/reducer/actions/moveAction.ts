@@ -1,5 +1,5 @@
 import { BoardState, Coord, Outcome, MoveResult, Piece, TileData } from '../../schema';
-import { checkForWinner, isBlack, isJumpPossible, reducePhase, updateBoard, wasLastMove } from '../../utils';
+import { checkForWinner, getString, isBlack, isJumpPossible, reducePhase, updateBoard, wasLastMove } from '../../utils';
 import { next } from '../../utils';
 import { ActionType } from './action';
 
@@ -35,7 +35,7 @@ export const handleMovePieceAction = (state: BoardState, action: MovePieceAction
       turn,
       moveHistory: [...transformations, action],
       lock: { piece: Piece.Empty, coord: { x: -1, y: -1 } },
-      message: `${isBlack(winner) ? 'Black' : 'Red'} Wins!`
+      message: `${isBlack(winner) ? getString('black') : getString('red')} ${getString("wins")}`
     } as BoardState;
   }
 
@@ -56,7 +56,7 @@ export const handleMovePieceAction = (state: BoardState, action: MovePieceAction
   };
 
   // Note: this a good spot to log the state changes for debugging
-  // console.log(newState);
+  console.log(newState);
   return newState;
 };
 
@@ -65,7 +65,7 @@ export function validateMovePieceAction(state: BoardState, action: MovePieceActi
   const { board } = state;
   // checks for any outstanding locks. reminder locks are moves that were started but not finished, aka a jump in a multiple jump chain.
   if (state.lock && (state.lock.coord.x !== from.x || state.lock.coord.y !== from.y)) {
-    return { message: 'Keep going you have another jump with the peice you already moved.' };
+    return { message: getString('keepGoing') };
   }
 
   try {
@@ -73,7 +73,7 @@ export function validateMovePieceAction(state: BoardState, action: MovePieceActi
     // a jump possible cause it could be an invalid move.
     const isJumpAvailable = isJumpPossible(board, piece);
     if (result === MoveResult.Shift && isJumpAvailable) {
-      return { message: 'A jump is possible, find it.' };
+      return { message: getString('jumpPossible') };
     }
   } catch (e) {
     console.error('Error attempting to check if a jump is possible.', e);
@@ -82,7 +82,7 @@ export function validateMovePieceAction(state: BoardState, action: MovePieceActi
   // validate step (move should be one of the valid ones for this piece potentials);
   const myMove = potentials.find((p) => p.coord.x === to.x && p.coord.y === to.y);
   if (!myMove) {
-    return { message: 'Invalid move.' };
+    return { message: getString('invalid') };
   }
   return { myMove }
 }

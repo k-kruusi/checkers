@@ -1,6 +1,7 @@
 import { useCheckers } from '../hooks';
 import { ActionType } from '../reducer';
 import '../theme/ButtonStyle.css';
+import { getString } from '../utils';
 
 // resets the game
 export const ResetButton = () => {
@@ -15,7 +16,7 @@ export const ResetButton = () => {
       className="shared-button"
       aria-label="reset"
       onClick={onClick}>
-      RESET
+      {getString('reset')}
     </button>
   );
 }

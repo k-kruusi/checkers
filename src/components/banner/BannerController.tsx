@@ -3,7 +3,7 @@ import { useCheckers } from '../../hooks';
 import { GamePhase } from '../../schema';
 import { ActionType } from '../../reducer';
 import { theme } from '../../theme';
-import { getBannerBgColor } from '../../utils';
+import { getBannerBgColor, getString } from '../../utils';
 
 const bannerStyles: React.CSSProperties = {
   position: 'absolute',
@@ -45,14 +45,14 @@ export const BannerController = () => {
       const transitionBanner = () => {
         dispatch({ type: ActionType.BANNER_TRANSITION, currentPhase: turn.phase });
       }
-      const timer = setTimeout(transitionBanner, 1200);
+      const timer = setTimeout(transitionBanner, 1250);
       return () => clearTimeout(timer);
     }
   }, [turn.phase, dispatch]);
 
   useEffect(() => {
     if (state.message) {
-      const timer = setTimeout(clearMessage, 1200);
+      const timer = setTimeout(clearMessage, 1500);
       return () => clearTimeout(timer);
     }
   }, [state.message, dispatch, clearMessage]);
@@ -68,10 +68,10 @@ export const BannerController = () => {
 
 const getBannerContent = (phase: GamePhase, message: string | null) => {
   if (phase === GamePhase.TransitionToBlack) {
-    return 'Black Turn';
+    return getString("blackTurn");
   }
   if (phase === GamePhase.TransitionToRed) {
-    return 'Red Turn';
+    return getString("redTurn");
   }
   if (message && (phase === GamePhase.Black || phase === GamePhase.Red)) {
     return message;

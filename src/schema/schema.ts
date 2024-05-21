@@ -6,7 +6,7 @@ export interface BoardState {
   turn: TurnState;
   winner: Piece | null;
   transformations: Action[];
-  lock: TileData | null;
+  lock: TileData | null; // this is used if a player makes a jump in a move that has a series of jumps, but stops short
   message: string | null;
   players: Player[];
 }

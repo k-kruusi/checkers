@@ -1,0 +1,15 @@
+{
+  "title": "Checkers",
+  "black": "Black",
+  "red": "Red",
+  "reset": "Reset",
+  "ai": "AI",
+  "on": "on",
+  "off": "off",
+  "keepGoing": "Keep going you have another jump.",
+  "jumpPossible": "A jump is possible, find it.",
+  "invalid": "Invalid move.",
+  "blackTurn": "Black turn",
+  "redTurn": "Red turn",
+  "wins": "Wins!"
+}

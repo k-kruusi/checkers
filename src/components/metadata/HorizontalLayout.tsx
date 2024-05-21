@@ -5,6 +5,7 @@ import { BannerController } from '../banner/BannerController';
 import { ResetButton } from '../ResetButton';
 import { AIToggle } from '../AIToggle';
 import { Title } from '../Title';
+import { getString } from '../../utils';
 
 const horizontalStyles: React.CSSProperties = {
   position: 'relative',
@@ -40,7 +41,7 @@ export const HorizontalLayout = ({ children, blackTime, redTime, count, isBlackT
     <>
       <Title />
       <div style={horizontalStyles} >
-        <InfoGraphic name="Black" time={blackTime} count={count.black} myTurn={isBlackTurn} />
+        <InfoGraphic name={getString("black")} time={blackTime} count={count.black} myTurn={isBlackTurn} />
         <div style={mainContent}>
           {children}
           <BannerController />
@@ -49,7 +50,7 @@ export const HorizontalLayout = ({ children, blackTime, redTime, count, isBlackT
             <AIToggle />
           </div>
         </div>
-        <InfoGraphic name="Red" time={redTime} count={count.red} myTurn={!isBlackTurn} />
+        <InfoGraphic name={getString("red")} time={redTime} count={count.red} myTurn={!isBlackTurn} />
       </div>
     </>
   );

@@ -1,5 +1,6 @@
 import { theme } from '../theme';
 import '../theme/fonts.css';
+import { getString } from '../utils';
 
 const titleStyle: React.CSSProperties = {
   textAlign: 'center',
@@ -10,5 +11,5 @@ const titleStyle: React.CSSProperties = {
 };
 
 export const Title = () => {
-  return <div style={titleStyle}><h1>Checkers</h1></div>
+  return <div style={titleStyle}><h1>{getString("title")}</h1></div>
 }
