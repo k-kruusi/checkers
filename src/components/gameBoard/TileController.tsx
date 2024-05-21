@@ -50,7 +50,7 @@ export const TileController: React.FC<TileContainerProps> = ({
       cursor: 'pointer',
       position: 'relative',
       padding: 4,
-      boxShadow: highlight ? `inset 0 0 10px ${theme.colors.blue}` : ''
+      boxShadow: highlight ? `inset 0 0 16px ${theme.colors.blue}` : ''
     };
   }, [getTileColor, x, y]);
 

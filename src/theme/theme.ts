@@ -9,7 +9,7 @@ export const theme = {
     black: '#222222',
     red: '#e74c3c',
     green: 'green',
-    blue: '#3399ee',
+    blue: '#3399ff',
     blackBanner: 'rgba(34, 34, 34, 0.8)',
     redBanner: 'rgba(231, 76, 60, 0.8)',
   },

@@ -27,6 +27,7 @@ const headerStyle: React.CSSProperties = {
   textAlign: 'center'
 };
 
+// renders the player data
 export const InfoGraphic = ({ name, time, count, myTurn }: {
   name: string,
   time: string,
