@@ -10,9 +10,13 @@ const titleStyle: React.CSSProperties = {
 };
 
 export const Title = () => {
-  return <div style={titleStyle}><h1>{getString("title")}</h1></div>
+  return <div style={titleStyle}><h1>{getString("company")} {getString("title")}</h1></div>;
+}
+
+export const Checkers = () => {
+  return <div style={titleStyle}><h1>{getString("title")}</h1></div>;
 }
 
 export const Birdseye = () => {
-  return <div style={titleStyle}><h1>Birdseye</h1></div>
+  return <div style={titleStyle}><h1>{getString("company")}</h1></div>;
 }

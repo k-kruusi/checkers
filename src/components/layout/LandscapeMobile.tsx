@@ -4,7 +4,7 @@ import { InfoGraphic } from '../Infographic';
 import { BannerController } from '../banner/BannerController';
 import { ResetButton } from '../ResetButton';
 import { AIToggle } from '../AIToggle';
-import { Birdseye, Title } from '../Title';
+import { Birdseye, Checkers } from '../Title';
 
 
 const horizontalStyles: React.CSSProperties = {
@@ -44,7 +44,7 @@ export const LandscapeMobileLayout = ({ children }: { children: ReactNode }) => 
           <BannerController top="50%" />
         </div>
         <div style={buttonContainer}>
-          <Title />
+          <Checkers />
           <AIToggle />
           <InfoGraphic piece={Piece.Red} />
         </div>
