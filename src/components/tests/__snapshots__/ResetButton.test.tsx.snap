@@ -6,7 +6,7 @@ exports[`ResetButton matches the snapshot 1`] = `
     aria-label="reset"
     class="shared-button"
   >
-    RESET
+    Reset
   </button>
 </DocumentFragment>
 `;

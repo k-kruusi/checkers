@@ -19,7 +19,7 @@ describe('validateMovePieceAction', () => {
     };
 
     const result = validateMovePieceAction(state, action);
-    expect(result.message).toBe('Keep going you have another jump with the peice you already moved.');
+    expect(result.message).toBe('Keep going you have another jump.');
   });
 
   it('should return a shift move if a jump is possible', () => {

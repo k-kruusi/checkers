@@ -6,7 +6,7 @@ exports[`AIToggle matches the snapshot 1`] = `
     aria-label="ai-toggle"
     class="shared-button"
   >
-    AI On
+    AI on
   </button>
 </DocumentFragment>
 `;

@@ -1,15 +1,15 @@
 import { render } from '@testing-library/react';
 import { CheckersProvider, NextMoveInspectorProvider } from '../../../providers';
-import { LayoutSelector } from '../LayoutSelector';
+import { VerticalLayout } from '../VerticalLayout';
 
-describe('LayoutSelector', () => {
+describe('HorizontalLayout', () => {
   it('matches the snapshot', () => {
     const { asFragment } = render(
       <CheckersProvider>
         <NextMoveInspectorProvider>
-          <LayoutSelector>
-            <div>gameboard</div>
-          </LayoutSelector>
+          <VerticalLayout>
+            <div>placeholder</div>
+          </VerticalLayout>
         </NextMoveInspectorProvider>
       </CheckersProvider>);
 

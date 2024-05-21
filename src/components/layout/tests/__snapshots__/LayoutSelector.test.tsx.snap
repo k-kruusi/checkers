@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LayoutSelector matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    style="text-align: center; color: rgb(255, 255, 240); font-size: 4em; font-family: Amatic SC, sans-serif;"
+  >
+    <h1>
+      Birdseye Checkers
+    </h1>
+  </div>
+  <div
+    style="position: relative; display: flex; flex-direction: row; justify-content: center; align-items: center;"
+  >
+    <div
+      style="border: 4px solid #daa520; border-radius: 5px; min-width: 85px; user-select: none; font-family: Amatic SC, sans-serif;"
+    >
+      <div
+        style="margin: 5px; padding: 5px 10px; background-color: rgb(255, 255, 240); font-weight: bold; text-align: left;"
+      >
+        <div>
+          <h1
+            style="font-size: 18px; text-align: center;"
+          >
+            Black
+          </h1>
+        </div>
+        <div
+          style="display: flex; flex-direction: row; align-items: center; gap: 5px; text-align: left; font-size: 18px;"
+        >
+          <svg>
+            timer.svg
+          </svg>
+           
+          <p>
+            0:00
+          </p>
+        </div>
+        <div
+          style="display: flex; flex-direction: row; align-items: center; gap: 5px; text-align: left; font-size: 18px;"
+        >
+          <svg>
+            pieces.svg
+          </svg>
+           
+          <p>
+            12
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      style="display: flex; flex-direction: column; justify-content: center; align-items: center;"
+    >
+      <div>
+        gameboard
+      </div>
+      <div
+        style="display: flex; flex-direction: row; gap: 10px;"
+      >
+        <button
+          aria-label="reset"
+          class="shared-button"
+        >
+          Reset
+        </button>
+        <button
+          aria-label="ai-toggle"
+          class="shared-button"
+        >
+          AI on
+        </button>
+      </div>
+    </div>
+    <div
+      style="border: 4px solid #daa520; border-radius: 5px; min-width: 85px; user-select: none; font-family: Amatic SC, sans-serif;"
+    >
+      <div
+        style="margin: 5px; padding: 5px 10px; background-color: rgb(70, 70, 70); font-weight: bold; text-align: left;"
+      >
+        <div>
+          <h1
+            style="font-size: 18px; text-align: center;"
+          >
+            Red
+          </h1>
+        </div>
+        <div
+          style="display: flex; flex-direction: row; align-items: center; gap: 5px; text-align: left; font-size: 18px;"
+        >
+          <svg>
+            timer.svg
+          </svg>
+           
+          <p>
+            0:00
+          </p>
+        </div>
+        <div
+          style="display: flex; flex-direction: row; align-items: center; gap: 5px; text-align: left; font-size: 18px;"
+        >
+          <svg>
+            pieces.svg
+          </svg>
+           
+          <p>
+            12
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

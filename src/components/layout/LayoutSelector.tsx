@@ -2,9 +2,9 @@ import { ReactNode } from 'react';
 import { useLayout } from '../../hooks';
 import { VerticalLayout } from './VerticalLayout';
 import { HorizontalLayout } from './HorizontalLayout';
-import { LandscapeMobileLayout } from './LandscapeMobile';
+import { LandscapeMobileLayout } from './LandscapeMobileLayout';
 
-// handles the timer logic, and board layout wrapping the info pannels and the board.
+// handles layout wrapping the info pannels and the board.
 export const LayoutSelector = ({ children }: { children?: ReactNode }) => {
   const { isConstrainedWidth, isMobile, isLandscape, isTablet } = useLayout();
 

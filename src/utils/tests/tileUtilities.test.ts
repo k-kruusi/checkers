@@ -43,8 +43,6 @@ describe('isKing function', () => {
   });
 });
 
-
-
 describe('isBlack function', () => {
   it('should return true for Piece.Black', () => {
     expect(isBlack(Piece.Black)).toBe(true);
