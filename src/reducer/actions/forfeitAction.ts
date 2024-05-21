@@ -1,4 +1,4 @@
-import { BoardState, Piece, TileData } from "../../schema";
+import { BoardState, Piece } from "../../schema";
 import { nameForTile } from "../../utils";
 import { ActionType } from "./action";
 
