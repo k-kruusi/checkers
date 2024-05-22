@@ -15,7 +15,8 @@ export const ComputerPlayerProvider: React.FC<{ children: ReactNode }> = ({ chil
   const [lastTurn, setLastTurn] = useState<number>(-1);
 
   const pickMove = useCallback(() => {
-    // could update this to work with either black or red being computer controlled...
+    // TODO: could update this to work with either black or red 
+    // being computer controlled...
     const { red } = getPieces(board);
     const movesWithoutJumps: ComputerPlayerOption[] = [];
     const movesWithJumps: ComputerPlayerOption[] = [];
@@ -59,6 +60,8 @@ export const ComputerPlayerProvider: React.FC<{ children: ReactNode }> = ({ chil
     return { tileData: red[0], move: null };
   }, [inspectAndReturn, board]);
 
+
+  // triggers the computer to play
   useEffect(() => {
     if (lastTurn === turn.count || winner) {
       return;

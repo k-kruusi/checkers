@@ -1,7 +1,7 @@
 import { ReactNode, createContext, useEffect, useMemo, useReducer, useState } from 'react';
-import { BoardState, GamePhase, Piece } from '../schema';
+import { BoardState, GamePhase } from '../schema';
 import { Action, reducer } from '../reducer';
-import { Timer, cloneState, formatTime, getPieces, isTurn } from '../utils';
+import { Timer, cloneState, formatTime } from '../utils';
 
 export const CheckersContext = createContext<{
   state: BoardState;
@@ -20,6 +20,7 @@ export const CheckersProvider: React.FC<{ children: ReactNode }> = ({ children }
   const blackTimer = useMemo(() => new Timer(), []);
   const redTimer = useMemo(() => new Timer(), []);
 
+  // logic for pausing and playing the timers
   useEffect(() => {
     if (turn.count === 0 && turn.phase === GamePhase.Black) {
       blackTimer.reset();
@@ -47,6 +48,7 @@ export const CheckersProvider: React.FC<{ children: ReactNode }> = ({ children }
     }
   }, [turn.phase, turn.count, blackTimer, redTimer, winner]);
 
+  // logic for updating the time
   useEffect(() => {
     if (!winner) {
       const interval = setInterval(() => {
