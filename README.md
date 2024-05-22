@@ -21,11 +21,11 @@ I built the entire project using vanilla React with TypeScript as a challenge. T
 
 For the game state, I used a reducer pattern with a model that stores the transformations (actions) acted on it. If we were to host this or enable multiplayer, we could sync the game state between clients with these transformations. There's no need to store the entire state object; it can be deduced from the initial state and the application of the transformations. Most games complete with fewer than 80 actions which gives a rough idea of the state size, somewhere in the low kilobyte range. I used the `| null` instead of optional properties in the schema as its clearer intent when a property is expected to be null most of the time, additionally this means no undefined values to worry about.
 
-I would need to add a small bit of additional logic to really support multiplayer if the game was hosted. Just like a separation of responsibility so both clients wouldnt end up sending duplicate events in some cases; (looking at the banner class specifically). 
+I would need to add a small bit of additional logic to really support multiplayer if the game was hosted. Just like a separation of responsibility so both clients wouldnt end up sending duplicate events in some cases; (looking at the banner class specifically). In a bigger project this approach would lend itself easily to using something like redux.
 
-the core of my logic is broken up in these files:
+The core of my app is broken up in these files:
 
-CheckersProvider - hoist up the state data, and provides access to the dispatch event for the reduce
+CheckersProvider - hoist the state data, timers, and provides access to useReducer to dispatch events.
 NextMoveInspectorProvider - calculates the potentials moves for tiles you hover over or give it.
 ComputerPlayerProvider - does the logic of selecting the computers moves
 LayoutSelector - picks the layout to use based on the devices. The layouts themselves are combinations of components, divs and styles.
