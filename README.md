@@ -16,6 +16,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 To run the unit tests.
 
 ### Explainations
+## Mobile:
+![Capture](https://github.com/k-kruusi/checkers/assets/36672454/b7fb6460-f113-447f-b82d-e9df8b503cb5)
+![Capture](https://github.com/k-kruusi/checkers/assets/36672454/e8faaf6b-619a-465b-8b53-bf1436e71437)
+
+## Desktop:
+![Capture](https://github.com/k-kruusi/checkers/assets/36672454/9caee8c2-26bd-4c65-ba3b-987af3cf0eeb)
 
 I built the entire project using vanilla React with TypeScript as a challenge. 
 
