@@ -24,9 +24,13 @@ For the game state, I used a reducer pattern with a model that stores the transf
 The core of my app is broken up in these files:
 
 CheckersProvider - hoist the state data, timers, and provides access to useReducer to dispatch events.
+
 NextMoveInspectorProvider - calculates the potentials moves for tiles you hover over or give it.
+
 ComputerPlayerProvider - does the logic of selecting the computers moves
+
 LayoutSelector - picks the layout to use based on the devices. The layouts themselves are combinations of components, divs and styles.
+
 GameBoardController - handles rendering of the board, and tile selection etc.
 
 I enjoyed the algorithm part of this project. The logic to deduce possible moves—chaining jumps, or having a user perform one of the jumps and miss the larger chain, covering for human error was fun. Coding the computer player which really is just an extension on the original move highlighting logic; I considered integrating a request to ChatGPT pass it some representation of the board, possible moves and have it pick one, but I am quite happy with how the computer opponent turned out; its not smart by anymeans, but it does a good job.
