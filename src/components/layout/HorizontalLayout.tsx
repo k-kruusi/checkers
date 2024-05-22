@@ -5,6 +5,8 @@ import { BannerController } from '../banner/BannerController';
 import { ResetButton } from '../ResetButton';
 import { AIToggle } from '../AIToggle';
 import { Title } from '../Title';
+import { useLayout } from '../../hooks';
+import { theme } from '../../theme';
 
 
 const horizontalStyles: React.CSSProperties = {
@@ -28,7 +30,12 @@ const buttonContainer: React.CSSProperties = {
   gap: 10
 };
 
+const spacerStyle: React.CSSProperties = {
+  height: `calc(${theme.size.tileSize} * 0.5)`
+};
+
 export const HorizontalLayout = ({ children }: { children: ReactNode }) => {
+  const { isMobile } = useLayout();
 
   return (
     <>
@@ -36,8 +43,9 @@ export const HorizontalLayout = ({ children }: { children: ReactNode }) => {
       <div style={horizontalStyles} >
         <InfoGraphic piece={Piece.Black} />
         <div style={mainContent}>
+          {!isMobile && <div style={spacerStyle} />}
           {children}
-          <BannerController top="2%" />
+          <BannerController top="3%" />
           <div style={buttonContainer}>
             <ResetButton />
             <AIToggle />

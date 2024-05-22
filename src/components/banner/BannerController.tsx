@@ -47,14 +47,14 @@ export const BannerController = ({ top }: { top: string }) => {
       const transitionBanner = () => {
         dispatch({ type: ActionType.BANNER_TRANSITION, currentPhase: turn.phase });
       }
-      const timer = setTimeout(transitionBanner, 1250);
+      const timer = setTimeout(transitionBanner, 1500);
       return () => clearTimeout(timer);
     }
   }, [turn.phase, dispatch]);
 
   useEffect(() => {
     if (state.message) {
-      const timer = setTimeout(clearMessage, 1500);
+      const timer = setTimeout(clearMessage, 2000);
       return () => clearTimeout(timer);
     }
   }, [state.message, dispatch, clearMessage]);

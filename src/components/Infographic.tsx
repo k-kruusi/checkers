@@ -38,7 +38,7 @@ export const InfoGraphic = ({ piece }: {
   const { board, turn } = state;
   const { red, black } = getPieces(board);
   const isBlackTurn = isTurn(turn.phase, Piece.Black);
-  const isMyTurn = isBlackTurn && piece === Piece.Black;
+  const isMyTurn = isBlackTurn && piece === Piece.Black || !isBlackTurn && piece === Piece.Red;
   const myTitle = piece === Piece.Black ? getString('black') : getString('red');
   const myTime = piece === Piece.Black ? blackTime : redTime;
   const myCount = piece === Piece.Black ? black.length : red.length;

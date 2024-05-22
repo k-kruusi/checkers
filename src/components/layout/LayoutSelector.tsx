@@ -7,7 +7,6 @@ import { LandscapeMobileLayout } from './LandscapeMobileLayout';
 // handles layout wrapping the info pannels and the board.
 export const LayoutSelector = ({ children }: { children?: ReactNode }) => {
   const { isConstrainedWidth, isMobile, isLandscape, isTablet } = useLayout();
-  console.log('rendered');
   if (isMobile && !isTablet) {
     if (isLandscape) {
       return (<LandscapeMobileLayout>{children}</LandscapeMobileLayout>);

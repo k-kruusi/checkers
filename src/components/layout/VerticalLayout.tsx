@@ -9,18 +9,20 @@ import { Title } from '../Title';
 const verticalStyles: React.CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
+  justifyContent: 'space-evenly',
+  height: '100vh',
 };
 
 const mainContent: React.CSSProperties = {
   position: 'relative'
 };
 
-const bottomContainer: React.CSSProperties = {
+const container: React.CSSProperties = {
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-evenly',
-  gap: '10px'
+  gap: '10px',
+  marginTop: '10px'
 };
 
 const buttonsContainer: React.CSSProperties = {
@@ -37,10 +39,7 @@ export const VerticalLayout = ({ children }: {
   return (
     <div style={verticalStyles}>
       <Title />
-      <div style={mainContent}>
-        {children}
-      </div>
-      <div style={bottomContainer}>
+      <div style={container}>
         <InfoGraphic piece={Piece.Black} />
         <div style={buttonsContainer}>
           <ResetButton />
@@ -48,6 +47,9 @@ export const VerticalLayout = ({ children }: {
           <AIToggle />
         </div>
         <InfoGraphic piece={Piece.Red} />
+      </div>
+      <div style={mainContent}>
+        {children}
       </div>
     </div>
   );

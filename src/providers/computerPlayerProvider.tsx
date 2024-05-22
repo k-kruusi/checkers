@@ -1,27 +1,32 @@
 import { ReactNode, createContext, useCallback, useEffect, useState } from 'react';
 import { useCheckers, useNextMove } from '../hooks';
 import { getPieces, getRandomIndex, isTurn } from '../utils';
-import { ComputerPlayerOption, MoveResult, Outcome, PlayerType } from '../schema';
+import { ComputerPlayerOption, MoveResult, Outcome, Piece, PlayerType } from '../schema';
 import { ActionType } from '../reducer';
 
 export const ComputerPlayerContext = createContext<{
-  pickMove: () => void;
+  pickMove: (piece: Piece) => void;
 } | null>(null);
 
 export const ComputerPlayerProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { state, dispatch } = useCheckers();
   const { board, turn, players, winner } = state;
   const { inspectAndReturn } = useNextMove();
-  const [lastTurn, setLastTurn] = useState<number>(-1);
+  const [lastTurnRed, setLastTurnRed] = useState<number>(-1);
+  const [lastTurnBlack, setLastTurnBlack] = useState<number>(-1);
 
-  const pickMove = useCallback(() => {
-    // TODO: could update this to work with either black or red 
-    // being computer controlled...
-    const { red } = getPieces(board);
+  const pickMove = useCallback((piece: Piece) => {
+    const { red, black } = getPieces(board);
     const movesWithoutJumps: ComputerPlayerOption[] = [];
     const movesWithJumps: ComputerPlayerOption[] = [];
 
-    red.forEach((tileData) => {
+    const piecesOfFocus = piece === Piece.Black ? black : red;
+
+    if (piecesOfFocus.length === 0) {
+      return null;
+    }
+
+    piecesOfFocus.forEach((tileData) => {
       let moves: Outcome[] = [];
 
       try {
@@ -57,29 +62,27 @@ export const ComputerPlayerProvider: React.FC<{ children: ReactNode }> = ({ chil
       return movesWithoutJumps[index];
     }
 
-    return { tileData: red[0], move: null };
+    return null;
   }, [inspectAndReturn, board]);
 
 
-  // triggers the computer to play
+  // observes & triggers red if computer player
   useEffect(() => {
-    if (lastTurn === turn.count || winner) {
+    if (lastTurnRed === turn.count || !isTurn(turn.phase, Piece.Red) || winner) {
+      return;
+    }
+    const selection = pickMove(Piece.Red);
+    if (!selection) {
+      // game over there are no moves left for the computer.
+      dispatch({ type: ActionType.FORFEIT, loser: Piece.Red });
       return;
     }
 
     const computerPlayer = players.find((p) => p.type === PlayerType.Computer);
-    if (!computerPlayer || !isTurn(turn.phase, computerPlayer.color)) {
+    if (!computerPlayer) {
       return;
     }
-
-    const selection = pickMove();
-    if (!selection || !selection.move) {
-      // game over there are no moves left for the computer.
-      dispatch({ type: ActionType.FORFEIT, loser: computerPlayer.color });
-      return;
-    }
-
-    setLastTurn(turn.count);
+    setLastTurnRed(turn.count);
     dispatch({
       type: ActionType.MOVE_PIECE,
       from: selection.tileData.coord,
@@ -91,9 +94,21 @@ export const ComputerPlayerProvider: React.FC<{ children: ReactNode }> = ({ chil
     });
   }, [
     turn.phase, players, pickMove,
-    dispatch, lastTurn, setLastTurn,
+    dispatch, lastTurnRed, setLastTurnRed,
     turn.count, winner
   ]);
+
+  // observes black
+  useEffect(() => {
+    if (lastTurnBlack === turn.count || !isTurn(turn.phase, Piece.Black) || winner) {
+      return;
+    }
+    const selection = pickMove(Piece.Black);
+    if (!selection) {
+      dispatch({ type: ActionType.FORFEIT, loser: Piece.Black });
+    }
+    setLastTurnBlack(turn.count);
+  }, [lastTurnBlack, turn, winner, pickMove, dispatch]);
 
   return (
     <ComputerPlayerContext.Provider value={{ pickMove }}>

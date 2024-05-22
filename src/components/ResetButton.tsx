@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useCheckers } from '../hooks';
 import { ActionType } from '../reducer';
 import '../theme/ButtonStyle.css';
@@ -7,9 +8,9 @@ import { getString } from '../utils';
 export const ResetButton = () => {
   const { dispatch } = useCheckers();
 
-  const onClick = () => {
+  const onClick = useCallback(() => {
     dispatch({ type: ActionType.RESET_GAME });
-  }
+  }, [dispatch]);
 
   return (
     <button

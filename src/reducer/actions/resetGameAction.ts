@@ -10,6 +10,6 @@ export function handleResetGameAction(state: BoardState, _: ResetGameAction) {
 
   const players = state.players;
   const fresh = cloneState();
-
+  console.log({ ...fresh, players });
   return { ...fresh, players };
 }
