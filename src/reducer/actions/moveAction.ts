@@ -56,7 +56,7 @@ export const handleMovePieceAction = (state: BoardState, action: MovePieceAction
   };
 
   // Note: this a good spot to log the state changes for debugging
-  console.log(newState);
+  // console.log(newState);
   return newState;
 };
 

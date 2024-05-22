@@ -1,20 +1,20 @@
 import './App.css';
 import { CheckersProvider, ComputerPlayerProvider } from './providers';
 import { GameBoardController } from './components';
-import { NextMoveInspectorProvider } from './providers';
+import { NextMoveProvider } from './providers';
 import { LayoutSelector } from './components';
 
 function App() {
   return (
     <div className="App">
       <CheckersProvider>
-        <NextMoveInspectorProvider>
+        <NextMoveProvider>
           <ComputerPlayerProvider>
             <LayoutSelector>
               <GameBoardController />
             </LayoutSelector>
           </ComputerPlayerProvider>
-        </NextMoveInspectorProvider>
+        </NextMoveProvider>
       </CheckersProvider>
     </div>
   );

@@ -10,7 +10,7 @@ export const NextMoveInspectorContext = createContext<{
   clear: () => void;
 } | null>(null);
 
-export const NextMoveInspectorProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const NextMoveProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [focus, setFocus] = useState<TileData | null>(null);
   const [potentials, setPotentials] = useState<Outcome[]>([]);
   const { state } = useCheckers();

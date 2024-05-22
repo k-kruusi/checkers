@@ -31,7 +31,7 @@ The core of my app is broken up in these files:
 
 CheckersProvider - hoist the state data, timers, and provides access to useReducer to dispatch events.
 
-NextMoveInspectorProvider - calculates the potentials moves for tiles you hover over or give it.
+NextMoveProvider - calculates the potentials moves for tiles you hover over or give it.
 
 ComputerPlayerProvider - does the logic of selecting the computers moves
 

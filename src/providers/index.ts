@@ -1,3 +1,3 @@
 export * from './checkersProvider';
 export * from './computerPlayerProvider';
-export * from './nextMoveInspectorProvider';
+export * from './nextMoveProvider';

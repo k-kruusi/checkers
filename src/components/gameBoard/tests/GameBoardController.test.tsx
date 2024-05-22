@@ -1,14 +1,14 @@
 import { render } from '@testing-library/react';
 import { GameBoardController } from '../GameBoardController';
-import { CheckersProvider, NextMoveInspectorProvider } from '../../../providers';
+import { CheckersProvider, NextMoveProvider } from '../../../providers';
 
 describe('GameBoardController', () => {
   it('matches the snapshot', () => {
     const { asFragment } = render(
       <CheckersProvider>
-        <NextMoveInspectorProvider>
+        <NextMoveProvider>
           <GameBoardController />
-        </NextMoveInspectorProvider>
+        </NextMoveProvider>
       </CheckersProvider>);
     expect(asFragment()).toMatchSnapshot();
   });
