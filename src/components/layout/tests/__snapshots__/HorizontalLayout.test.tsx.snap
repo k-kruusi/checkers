@@ -52,6 +52,7 @@ exports[`HorizontalLayout matches the snapshot 1`] = `
     <div
       style="display: flex; flex-direction: column; justify-content: center; align-items: center;"
     >
+      <div />
       <div>
         placeholder
       </div>
