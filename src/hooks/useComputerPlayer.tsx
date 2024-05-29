@@ -5,7 +5,7 @@ export const useComputerPlayer = () => {
   const context = useContext(ComputerPlayerContext);
 
   if (!context) {
-    throw new Error('useCheckers must be used within a CheckersProvider');
+    throw new Error('use computer player must be called within a use computer player provider');
   }
 
   return { ...context, };

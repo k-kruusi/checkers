@@ -4,7 +4,7 @@ import { NextMoveInspectorContext } from '../providers';
 export const useNextMove = () => {
   const context = useContext(NextMoveInspectorContext);
   if (!context) {
-    throw new Error('useCheckers must be used within a CheckersProvider');
+    throw new Error('next move must be called within a next move provider');
   }
   return context;
 }
